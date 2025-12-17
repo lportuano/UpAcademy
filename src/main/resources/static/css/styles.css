@@ -1,0 +1,127 @@
+.bg-neutral-primary {
+    background-color: #6366f1; /* Celeste claro */
+}
+
+body {
+    background-color: #ffffff; /* blanco */
+}
+
+.titulo {
+    color: #1d4ed8; /* Azul */
+    font-size: 1.5rem; /* Tamaño de letra más grande */
+    font-weight: 700;
+}
+
+/* Barra de despliegue */
+.bg-neutral-primary-medium {
+    background-color: #fceea7; /* amarillo */
+}
+
+.border-default-medium {
+    border-color: #000000; /* Borde negro */
+}
+
+/* Press */
+.text-body {
+    color: #000000; /* Negro */
+}
+
+/* Cambiar el color al pasar el mouse sobre items del Press */
+.hover\:bg-neutral-tertiary-medium:hover {
+    background-color: #e0f2fe;
+}
+
+/* Home */
+.md\:text-fg-brand {
+    color: #000000; /* Negro */
+    font-weight: 700;
+}
+
+/* Boton Press */
+.press-button {
+    color: #1d4ed8;
+    font-weight: 700;
+}
+
+.main-content {
+    padding-top: 100px;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Animacion del Hello! */
+.animated-hello {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: bold;
+    color: #f59e0b;
+    margin-top: 100px;
+}
+
+.animated-hello span {
+    position: relative;
+    display: inline-block;
+    animation: bounce 0.5s ease infinite alternate;
+}
+
+/* Retrasos para cada letra */
+.animated-hello span:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.animated-hello span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.animated-hello span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.animated-hello span:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.animated-hello span:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.animated-hello span:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Animación */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc;
+    }
+    100% {
+        transform: translateY(-20px);
+        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc,
+                     0 4px 0 #ccc, 0 5px 0 #ccc, 0 6px 0 #ccc,
+                     0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
+                     0 10px 0 rgba(0, 0, 0, 0.4);
+    }
+}
+
+.texto{
+    color: #1d4ed8;
+    margin-left: 150px;
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+.h2{
+    color: #1d4ed8;
+    margin-left: 150px;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
