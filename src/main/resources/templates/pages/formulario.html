@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/css/formulario.css}">
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Formulario</title>
 </head>
 <body>
+
+<!-- Barra de navegacion superior (primera línea) -->
+<nav class="bg-white border-b border-gray-200 py-2">
+    <div class="max-w-screen-xl mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <!-- Logo y título -->
+            <div class="flex items-center space-x-2">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-8" alt="UpAcademy Logo" />
+                <span class="text-xl font-bold text-gray-800">UpAcademy</span>
+            </div>
+
+            <!-- Menú principal -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
+            </div>
+
+            <!-- Botones de acceso -->
+            <div class="flex items-center space-x-4">
+                <a th:href="@{/index}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
+                    Inicio
+                </a>
+                <div class="relative">
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Barra de navegacion inferior (segunda línea) -->
+<nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300">
+    <div class="max-w-screen-xl mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+            <!-- Título del curso -->
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold text-gray-800">Aprende Inglés</h1>
+                <p class="text-gray-600 hidden md:block">Explora y aprende todo lo necesario sobre el Ingles.</p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Form Uiverse.io by Pinparker - Modificado -->
+<form class="form">
+    <div class="form-title"><span>Regístrate para seguir aprendiendo</span></div>
+    <div class="title-2"><span>UpAcademy</span></div>
+
+    <!-- Nombre -->
+    <div class="input-container">
+        <input placeholder="Nombre" type="text" class="input-field" />
+    </div>
+
+    <!-- Apellido -->
+    <div class="input-container">
+        <input placeholder="Apellido" type="text" class="input-field" />
+    </div>
+
+    <!-- Fecha de nacimiento (DD/MM/AAAA) -->
+    <div class="input-container">
+        <input placeholder="Fecha de nacimiento (DD/MM/AAAA)" type="text" class="input-field" />
+    </div>
+
+    <!-- Email -->
+    <div class="input-container">
+        <input placeholder="Email" type="email" class="input-field" />
+    </div>
+
+    <!-- Teléfono -->
+    <div class="input-container">
+        <input placeholder="Teléfono (ej: +593 123 456 789)" type="tel" class="input-field" />
+    </div>
+
+    <!-- Dirección -->
+    <div class="input-container">
+        <input placeholder="Dirección" type="text" class="input-field" />
+    </div>
+
+    <!-- Fecha de inscripción (DD/MM/AAAA) -->
+    <div class="input-container">
+        <input placeholder="Fecha de inscripción (DD/MM/AAAA)" type="text" class="input-field" />
+    </div>
+
+    <!-- Nivel de inglés actual -->
+    <div class="input-container">
+        <select class="input-field">
+            <option value="" disabled selected>Selecciona tu nivel de inglés actual</option>
+            <option value="A1">A1 - Principiante</option>
+            <option value="A2">A2 - Básico</option>
+            <option value="B1">B1 - Intermedio</option>
+            <option value="B2">B2 - Intermedio Alto</option>
+            <option value="C1">C1 - Avanzado</option>
+            <option value="C2">C2 - Maestría</option>
+            <option value="ninguno">Ninguno - Empiezo desde cero</option>
+        </select>
+    </div>
+
+    <!-- Sección de estrellas (manteniendo el diseño original) -->
+    <section class="bg-stars">
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+    </section>
+
+    <button class="submit" type="submit">
+        <span class="sign-text">Regístrate es Gratis</span>
+    </button>
+</form>
+
 
 </body>
 </html>

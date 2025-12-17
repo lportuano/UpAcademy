@@ -8,44 +8,50 @@
 
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <title> UP ACADEMY </title>
 </head>
 <body>
 
-<!-- Barra de navegacion-->
-<nav class="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-default p-5">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img th:src="@{https://i.postimg.cc/prXq8DHH/gorro-de-graduacion.png}" class="h-7" alt="Flowbite Logo" />
-            <span class="titulo self-center text-xl text-heading font-semibold whitespace-nowrap">UpAcademy</span>
-        </a>
-        <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-dropdown" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
-        </button>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-neutral-primary">
-                <li>
-                    <a href="#" class="block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">Home</a>
-                </li>
-                <li>
-                    <button id="dropdownNvbarButton" data-dropdown-toggle="dropdownNavbar" class="press-button flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
-                        Presionar
-                        <svg class="w-4 h-4 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="dropdownNavbar" class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
-                        <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownNvbarButton">
-                            <li>
-                                <a href="#" class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Form</a>
-                            </li>
-                            <li>
-                                <a href="#" class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">About us</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+<!-- Barra de navegacion superior (primera línea) -->
+<nav class="bg-white border-b border-gray-200 py-2">
+    <div class="max-w-screen-xl mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <!-- Logo y título -->
+            <div class="flex items-center space-x-2">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-8" alt="UpAcademy Logo" />
+                <span class="text-xl font-bold text-gray-800">UpAcademy</span>
+            </div>
+
+            <!-- Menú principal -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
+            </div>
+
+            <!-- Botones de acceso -->
+            <div class="flex items-center space-x-4">
+                <a th:href="@{/formulario}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
+                    Regístrate
+                </a>
+                <div class="relative">
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Barra de navegacion inferior (segunda línea) -->
+<nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300">
+    <div class="max-w-screen-xl mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+            <!-- Título del curso -->
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold text-gray-800">Aprende Inglés</h1>
+                <p class="text-gray-600 hidden md:block">Explora y aprende todo lo necesario sobre el Ingles.</p>
+            </div>
         </div>
     </div>
 </nav>
@@ -63,11 +69,150 @@
     </div>
 </main>
 
-<div>
-    <h3 class="texto">Domina el inglés,</h3>
-    <h2 class="h2">abre tu mundo</h2>
+<!-- Sección principal con texto centrado -->
+<div class="main-section-centered">
+    <div class="centered-text-container">
+        <div class="text-content-centered">
+            <h3 class="texto-centered">Domina el inglés,</h3>
+            <h2 class="h2-centered">Abre tu mundo</h2>
+            <div class="separator-line"></div>
+            <p class="description-centered">
+                Con nuestra oferta especial exclusiva, podrás aprender inglés de forma efectiva y alcanzar tus metas profesionales y personales.
+            </p>
+        </div>
+    </div>
 </div>
 
 
+<!-- Sección de cursos de inglés por niveles -->
+<div class="cursos-section">
+    <div class="cursos-header">
+        <h2 class="cursos-title">Cursos de inglés</h2>
+        <p class="cursos-subtitle">Estos son nuestros cursos de inglés organizados por niveles</p>
+    </div>
+
+    <div class="cursos-grid">
+        <!-- Tarjeta 1: Nivel A1 - Principiante -->
+        <div class="curso-card">
+            <div class="curso-imagen">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng.png}" alt="Nivel A1 de inglés" />
+                <div class="nivel-badge">A1</div>
+            </div>
+            <div class="curso-content">
+                <h3 class="curso-nivel">Nivel A1</h3>
+                <p class="curso-descripcion">Principiante - Comunicación básica</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2: Nivel A2 - Básico -->
+        <div class="curso-card">
+            <div class="curso-imagen">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/traduccion.png}" alt="Nivel A2 de inglés" />
+                <div class="nivel-badge">A2</div>
+            </div>
+            <div class="curso-content">
+                <h3 class="curso-nivel">Nivel A2</h3>
+                <p class="curso-descripcion">Básico - Conversaciones simples</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3: Nivel B1 - Intermedio -->
+        <div class="curso-card">
+            <div class="curso-imagen">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng%20(1).png}" alt="Nivel B1 de inglés" />
+                <div class="nivel-badge">B1</div>
+            </div>
+            <div class="curso-content">
+                <h3 class="curso-nivel">Nivel B1</h3>
+                <p class="curso-descripcion">Intermedio - Fluidez básica</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 4: Nivel B2 - Intermedio Alto -->
+        <div class="curso-card">
+            <div class="curso-imagen">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/hola.png}" alt="Nivel B2 de inglés" />
+                <div class="nivel-badge">B2</div>
+            </div>
+            <div class="curso-content">
+                <h3 class="curso-nivel">Nivel B2</h3>
+                <p class="curso-descripcion">Intermedio alto - Comunicación fluida</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 5: Nivel C1 - Avanzado -->
+        <div class="curso-card">
+            <div class="curso-imagen">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/viaje.png}" alt="Nivel C1 de inglés" />
+                <div class="nivel-badge">C1</div>
+            </div>
+            <div class="curso-content">
+                <h3 class="curso-nivel">Nivel C1</h3>
+                <p class="curso-descripcion">Avanzado - Expresión compleja</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 6: Nivel C2 - Maestría -->
+        <div class="curso-card">
+            <div class="curso-imagen">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/educacion.png}" alt="Nivel C2 de inglés" />
+                <div class="nivel-badge">C2</div>
+            </div>
+            <div class="curso-content">
+                <h3 class="curso-nivel">Nivel C2</h3>
+                <p class="curso-descripcion">Maestría - Dominio nativo</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
+
+<footer class="footer footer-horizontal footer-center bg-purple-900 text-purple-100 p-10">
+    <aside>
+        <figure class="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow-lg">
+            <img
+                    th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}"
+                    alt="Logo UpAcademy"
+                    class="w-full h-full object-cover"
+            >
+        </figure>
+        <p class="font-bold">
+            UpAcademy
+            <br />
+            Educando desde 2025
+        </p>
+        <p>Roy Armijos - Bryan Guanoluisa</p>
+    </aside>
+    <nav>
+        <div class="grid grid-flow-col gap-4">
+            <a th:href="@{https://www.facebook.com/share/1DxuCrURaF/}" class="hover:text-purple-300 transition-colors">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        class="fill-current">
+                    <path
+                            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+                </svg>
+            </a>
+
+            <div class="h-6 w-0.5 bg-gray-500"></div>
+
+            <a th:href="@{https://www.instagram.com/up.academy.uio?igsh=MXB4djVpY2dzNHlkZw==}" class="hover:text-purple-300 transition-colors">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        class="fill-current">
+                    <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+</footer>
+
 </html>
