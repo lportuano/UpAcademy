@@ -1,6 +1,27 @@
-.main-content {
-    padding-top: 100px;
-    padding: 20px;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Imagen de fondo con tu link */
+    background-image: url('https://i.postimg.cc/BZhbMj6M/Gemini-Generated-Image-a5b0pxa5b0pxa5b0.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(40px);
+    z-index: -1;
 }
 
 .container {
@@ -9,357 +30,198 @@
     padding: 20px;
 }
 
-/* Animacion del Hello! */
 .animated-hello {
     text-align: center;
     font-size: 5rem;
     font-weight: bold;
     color: #7E42CF;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .animated-hello span {
     position: relative;
     display: inline-block;
-    animation: bounce 0.5s ease infinite alternate;
+    animation: bounce 0.6s ease infinite alternate;
 }
 
-/* Retrasos para cada letra */
-.animated-hello span:nth-child(1) {
-    animation-delay: 0.1s;
-}
 
-.animated-hello span:nth-child(2) {
-    animation-delay: 0.2s;
-}
+.animated-hello span:nth-child(1) { animation-delay: 0.1s; }
+.animated-hello span:nth-child(2) { animation-delay: 0.2s; }
+.animated-hello span:nth-child(3) { animation-delay: 0.3s; }
+.animated-hello span:nth-child(4) { animation-delay: 0.4s; }
+.animated-hello span:nth-child(5) { animation-delay: 0.5s; }
+.animated-hello span:nth-child(6) { animation-delay: 0.6s; }
 
-.animated-hello span:nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-.animated-hello span:nth-child(4) {
-    animation-delay: 0.4s;
-}
-
-.animated-hello span:nth-child(5) {
-    animation-delay: 0.5s;
-}
-
-.animated-hello span:nth-child(6) {
-    animation-delay: 0.6s;
-}
-
-/* Animación */
 @keyframes bounce {
-    0% {
-        transform: translateY(0);
-        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc;
-    }
-    100% {
-        transform: translateY(-20px);
-        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc,
-                     0 4px 0 #ccc, 0 5px 0 #ccc, 0 6px 0 #ccc,
-                     0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
-                     0 10px 0 rgba(0, 0, 0, 0.4);
-    }
-}
-
-.subtitulos{
-    color: #000000;
-    text-align: center;
+    0% { transform: translateY(0); text-shadow: 0 5px 0 #ccc; }
+    100% { transform: translateY(-20px); text-shadow: 0 15px 10px rgba(0, 0, 0, 0.2); }
 }
 
 
-.contenido {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 80px;
-    padding: 0 20px;
-    gap: 40px;
-    border-radius: 16px;
-}
-
-.carta {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 0px;
-    border-radius: 16px;
-    background-color: #7E42CF;
-}
-
-
-#stickyNavbar {
-    transition: all 0.3s ease;
-}
-
-#stickyNavbar.scrolled {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-
-/* Sección de cursos */
-.cursos-section {
-    max-width: 1200px;
-    margin: 80px auto;
-    padding: 0 20px;
-}
-
-.cursos-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.cursos-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #632788;
-    margin-bottom: 10px;
-}
-
-.cursos-subtitle {
-    font-size: 1rem;
-    color: #6b7280;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-/* Grid de tarjetas - EN UNA MISMA LÍNEA */
-.cursos-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: 15px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: #7c3aed #f3f4f6;
-}
-
-.cursos-grid::-webkit-scrollbar {
-    height: 6px;
-}
-
-.cursos-grid::-webkit-scrollbar-track {
-    background: #f3f4f6;
-    border-radius: 3px;
-}
-
-.cursos-grid::-webkit-scrollbar-thumb {
-    background: #7c3aed;
-    border-radius: 3px;
-}
-
-/* Tarjetas individuales - PEQUEÑAS - SIN ANIMACIONES HOVER */
-.curso-card {
-    min-width: 180px;
-    max-width: 180px;
-    background: white;
-    border: 1.5px solid #632788;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: #632788;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Imagen completa (sin recortar) */
-.curso-imagen {
-    position: relative;
-    width: 100%;
-    height: 120px;
-    overflow: hidden;
-}
-
-.curso-imagen img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Muestra la imagen completa sin recortar */
-    background-color: #f9fafb;
-    padding: 10px;
-}
-
-/* ELIMINADO: Badge del nivel */
-/* .nivel-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background: linear-gradient(135deg, #7c3aed, #4f46e5);
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.9rem;
-    box-shadow: 0 3px 6px rgba(124, 58, 237, 0.3);
-} */
-
-/* Contenido de la tarjeta */
-.curso-content {
-    padding: 15px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.curso-nivel {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #1f2937;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.curso-descripcion {
-    color: #6b7280;
-    font-size: 0.8rem;
-    line-height: 1.4;
-    text-align: center;
-    margin-top: auto;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .curso-card {
-        min-width: 160px;
-        max-width: 160px;
-    }
-
-    .cursos-grid {
-        gap: 12px;
-    }
-}
-
-@media (max-width: 768px) {
-    .cursos-grid {
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        padding-bottom: 15px;
-    }
-
-    .curso-card {
-        min-width: 150px;
-        max-width: 150px;
-    }
-
-    .curso-imagen {
-        height: 100px;
-    }
-
-    .curso-content {
-        padding: 12px;
-    }
-
-    .curso-nivel {
-        font-size: 1rem;
-    }
-
-    .curso-descripcion {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .cursos-title {
-        font-size: 1.5rem;
-    }
-
-    .cursos-subtitle {
-        font-size: 0.9rem;
-    }
-
-    .curso-card {
-        min-width: 140px;
-        max-width: 140px;
-    }
-
-    .curso-imagen {
-        height: 90px;
-    }
-}
-
-
-
-
-/* Sección principal centrada */
 .main-section-centered {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 350px;
     margin: 50px auto;
     padding: 0 20px;
     max-width: 1200px;
 }
 
-/* Rectangulo */
 .centered-text-container {
     width: 100%;
-    max-width: 800px;
-    padding: 40px 50px;
-    border-radius: 12px;
-    background-color: #7E42CF; /* Tu color específico */
-    border: 3px solid #8b5cf6; /* Borde morado */
-    position: relative;
-}
-
-/* Contenido del texto */
-.text-content-centered {
+    max-width: 850px;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #7E42CF;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(126, 66, 207, 0.3);
     text-align: center;
 }
 
-/* Título */
-.texto-centered {
+.texto-centered, .h2-centered {
     color: white;
-    font-size: 2.8rem;
-    font-weight: 800;
-    margin-bottom: 5px;
-    line-height: 1.1;
+    margin: 0;
+    line-height: 1.2;
 }
 
-.h2-centered {
-    color: white;
-    font-size: 2.4rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 25px;
-    line-height: 1.1;
-}
+.texto-centered { font-size: 2.8rem; font-weight: 800; }
+.h2-centered { font-size: 2.2rem; font-weight: 600; margin-bottom: 20px; }
 
-/* Línea separadora blanca */
 .separator-line {
-    width: 100px;
-    height: 3px;
+    width: 80px;
+    height: 4px;
     background-color: white;
     margin: 20px auto;
-    border-radius: 2px;
+    border-radius: 10px;
 }
 
-/* Descripción en blanco */
 .description-centered {
-    color: white;
-    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
     line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 20px;
+}
+
+.cursos-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.cursos-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cursos-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #632788;
+}
+
+.cursos-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.cursos-grid {
+    display: flex;
+    justify-content: center; /* Centra las tarjetas si sobra espacio */
+    align-items: stretch;
+    flex-wrap: nowrap;       /* PROHIBE que las tarjetas bajen a otra línea */
+    gap: 15px;               /* Espacio entre tarjetas */
+    width: 100%;
+    overflow-x: auto;        /* Permite el scroll interno pero lo ocultaremos */
+    padding: 20px 0;
+
+    /* Ocultar barra en Firefox e IE */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.curso-card {
+    flex: 0 0 auto;         /* Evita que las tarjetas se encojan o crezcan de más */
+    min-width: 170px;       /* Ajustamos un poco el ancho para que quepan las 6 */
+    max-width: 170px;
+    background: white;
+    border-radius: 16px;
+
+}
+
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.curso-card:nth-child(1) { animation-delay: 0.1s; }
+.curso-card:nth-child(2) { animation-delay: 0.2s; }
+.curso-card:nth-child(3) { animation-delay: 0.3s; }
+.curso-card:nth-child(4) { animation-delay: 0.4s; }
+.curso-card:nth-child(5) { animation-delay: 0.5s; }
+.curso-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* HOVER INTERACTIVO */
+.curso-card:hover {
+    transform: translateY(-15px);
+    border-color: #7E42CF;
+    box-shadow: 0 20px 30px rgba(126, 66, 207, 0.2);
+    cursor: pointer;
+}
+
+/* Imagen con zoom sutil */
+.curso-imagen {
+    width: 100%;
+    height: 120px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.curso-imagen img {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.curso-card:hover .curso-imagen img {
+    transform: scale(1.15);
+}
+
+/* Texto de la tarjeta */
+.curso-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.curso-nivel {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.curso-card:hover .curso-nivel {
+    color: #7E42CF;
+}
+
+.curso-descripcion {
+    color: #6b7280;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* =========================================
+   5. RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .cursos-grid {
+        justify-content: flex-start;
+        padding-bottom: 30px;
+    }
+    .animated-hello { font-size: 3rem; }
+    .texto-centered { font-size: 1.8rem; }
+    .h2-centered { font-size: 1.5rem; }
 }
