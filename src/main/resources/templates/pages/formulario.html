@@ -1,140 +1,124 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
 
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
 
-    <link rel="stylesheet" th:href="@{/css/formulario.css}">
+        <link rel="stylesheet" th:href="@{/css/formulario.css}">
 
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <title>Formulario</title>
-</head>
-<body>
+        <title>Formulario</title>
+    </head>
+    <body>
 
-<!-- Barra de navegacion superior (primera línea) -->
-<nav class="bg-white border-b border-gray-200 py-2">
-    <div class="max-w-screen-xl mx-auto px-4">
-        <div class="flex justify-between items-center">
-            <!-- Logo y título -->
-            <div class="flex items-center space-x-2">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-8" alt="UpAcademy Logo" />
-                <span class="text-xl font-bold text-gray-800">UpAcademy</span>
-            </div>
+    <!-- Barra de navegacion superior (primera línea) -->
+    <nav class="bg-white border-b border-gray-200 py-2">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo y título -->
+                <div class="flex items-center space-x-2">
+                    <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-8" alt="UpAcademy Logo" />
+                    <span class="text-xl font-bold text-gray-800">UpAcademy</span>
+                </div>
 
-            <!-- Menú principal -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
-            </div>
+                <!-- Menú principal -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
+                </div>
 
-            <!-- Botones de acceso -->
-            <div class="flex items-center space-x-4">
-                <a th:href="@{/index}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
-                    Inicio
-                </a>
-                <div class="relative">
+                <!-- Botones de acceso -->
+                <div class="flex items-center space-x-4">
+                    <a th:href="@{/index}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
+                        Inicio
+                    </a>
+                    <div class="relative">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- Barra de navegacion inferior (segunda línea) -->
-<nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300">
-    <div class="max-w-screen-xl mx-auto px-4 py-3">
-        <div class="flex justify-between items-center">
-            <!-- Título del curso -->
-            <div class="flex items-center space-x-4">
-                <h1 class="text-2xl font-bold text-gray-800">Aprende Inglés</h1>
-                <p class="text-gray-600 hidden md:block">Explora y aprende todo lo necesario sobre el Ingles.</p>
+    <!-- Barra de navegacion inferior (segunda línea) -->
+    <nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Título del curso -->
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-800">Aprende Inglés</h1>
+                    <p class="text-gray-600 hidden md:block">Explora y aprende todo lo necesario sobre el Ingles.</p>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<section class="registro-container">
-    <div class="estudiantes-col">
-        <img th:src="@{https://i.postimg.cc/TP8BxJkH/pngkit-jovenes-png-4074603.png}" alt="Estudiantes UpAcademy" class="img-estudiantes">
-        <div class="glow-effect"></div> </div>
+    <section class="registro-container">
+        <div class="estudiantes-col">
+            <img th:src="@{https://i.postimg.cc/TP8BxJkH/pngkit-jovenes-png-4074603.png}" alt="Estudiantes UpAcademy" class="img-estudiantes">
+            <div class="glow-effect"></div> </div>
 
-</section>
+    </section>
 
-<!-- Form Uiverse.io by Pinparker - Modificado -->
-<aside>
-    <form class="form" th:action="@{/academy/enviarEstudent}" method="post" th:object="${estudent}">
-        <div class="form-title"><span>Regístrate para seguir aprendiendo</span></div>
-        <div class="title-2"><span>UpAcademy</span></div>
+    <!-- Form Uiverse.io by Pinparker - Modificado -->
+    <aside>
+        <form class="form" th:action="@{/academy/enviarEstudent}" method="post" th:object="${estudent}">
+            <div class="form-title"><span>Registro / Actualización</span></div>
+            <div class="title-2"><span>UpAcademy</span></div>
 
-        <div class="input-container">
-            <input type="number" hidden th:field="*{id}" name="id" id="id" class="input-field" minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
-        </div>
+            <input type="hidden" th:field="*{id}" />
 
-        <!-- Nombre -->
-        <div class="input-container">
-            <input placeholder="Nombre" type="text" name="nombre" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
-        </div>
-
-        <!-- Apellido -->
-        <div class="input-container">
-            <input placeholder="Apellido" type="text" name="apellido" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
-        </div>
-
-        <!-- Fecha de nacimiento -->
-        <div class="input-container">
-            <label class="block text-sm font-bold text-white mb-1">Fecha de nacimiento</label>
-            <input type="date" name="fechaNacimiento" class="input-field" required max="" />
-        </div>
-
-        <!-- Email -->
-        <div class="input-container">
-            <input placeholder="Email" type="email" name="email" class="input-field" required maxlength="100" />
-        </div>
-
-        <!-- Teléfono -->
-        <div class="input-container">
-            <input placeholder="Numero de Telefono" type="tel" name="telefono" id="telefono" class="input-field" required pattern="^[0-9]{10}$" title="Debe contener exactamente 10 dígitos numéricos"/>
-            <div id="telefono-error" class="error-message" style="display: none; color: red; font-size: 12px; margin-top: 5px;">
-                Error: El teléfono debe tener exactamente 10 números
+            <div class="input-container">
+                <input placeholder="Nombre" type="text" th:field="*{nombre}" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
             </div>
-        </div>
+
+            <div class="input-container">
+                <input placeholder="Apellido" type="text" th:field="*{apellido}" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
+            </div>
+
+            <div class="input-container">
+                <label class="block text-sm font-bold text-white mb-1">Fecha de nacimiento</label>
+                <input type="date" th:field="*{fechaNacimiento}" class="input-field" required />
+            </div>
+
+            <div class="input-container">
+                <input placeholder="Email" type="email" th:field="*{email}" class="input-field" required maxlength="100" />
+            </div>
+
+            <div class="input-container">
+                <input placeholder="Número de Teléfono" type="tel" th:field="*{telefono}" class="input-field" required pattern="^[0-9]{10}$" title="Debe contener exactamente 10 dígitos"/>
+            </div>
+
+            <div class="input-container">
+                <input placeholder="Dirección" type="text" th:field="*{direccion}" class="input-field" required minlength="5" maxlength="200" />
+            </div>
+
+            <div class="input-container">
+                <label class="block text-sm font-bold text-white mb-1">Fecha de inscripción</label>
+                <input type="date" th:field="*{fechaInscripcion}" class="input-field" required />
+            </div>
+
+            <div class="input-container">
+                <select th:field="*{nivelIngles}" class="input-field" required>
+                    <option value="" disabled>Selecciona tu nivel</option>
+                    <option value="A1">A1 - Principiante</option>
+                    <option value="A2">A2 - Básico</option>
+                    <option value="B1">B1 - Intermedio</option>
+                    <option value="B2">B2 - Intermedio Alto</option>
+                    <option value="C1">C1 - Avanzado</option>
+                    <option value="C2">C2 - Maestría</option>
+                </select>
+            </div>
+
+            <button class="submit" type="submit">
+                <span class="sign-text">Guardar Información</span>
+            </button>
+        </form>
+    </aside>
 
 
-        <!-- Dirección -->
-        <div class="input-container">
-            <input placeholder="Dirección" type="text" name="direccion" class="input-field" required minlength="5" maxlength="200" />
-        </div>
-
-        <!-- Fecha de inscripción -->
-        <div class="input-container">
-            <label class="block text-sm font-bold text-white mb-1">Fecha de inscripcion</label>
-            <input placeholder="Fecha de inscripción" type="date" name="fechaInscripcion" class="input-field" required />
-        </div>
-
-        <!-- Nivel de inglés actual -->
-        <div class="input-container">
-            <select name="nivelIngles" class="input-field" required>
-                <option value="" disabled selected>Selecciona tu nivel de ingles actual</option>
-                <option value="A1">A1 - Principiante</option>
-                <option value="A2">A2 - Básico</option>
-                <option value="B1">B1 - Intermedio</option>
-                <option value="B2">B2 - Intermedio Alto</option>
-                <option value="C1">C1 - Avanzado</option>
-                <option value="C2">C2 - Maestría</option>
-            </select>
-        </div>
-
-
-
-        <button class="submit" type="submit">
-            <span class="sign-text">Regístrate es Gratis</span>
-        </button>
-    </form>
-</aside>
-
-
-</body>
-</html>
+    </body>
+    </html>
