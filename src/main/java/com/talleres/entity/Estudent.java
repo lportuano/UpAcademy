@@ -43,15 +43,12 @@ public class Estudent {
 
 
     @NotBlank(message = "El teléfono es obligatorio")
-    @Pattern(
-            regexp = "^[0-9]{10}$",
-            message = "El teléfono debe contener exactamente 10 dígitos numéricos"
-    )
+    @Pattern(regexp = "^[0-9]{10}$", message = "El teléfono debe contener exactamente 10 dígitos numéricos")
     private String telefono;
-
 
     @NotBlank(message = "La dirección es obligatoria")
     @Size(min = 5, max = 200, message = "La dirección debe tener entre 5 y 200 caracteres")
+    @Pattern(regexp = "^[^0-9]*$", message = "La dirección no debe contener números")
     private String direccion;
 
     @NotNull(message = "La fecha de inscripción es obligatoria")
