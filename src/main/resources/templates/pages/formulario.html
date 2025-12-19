@@ -65,71 +65,89 @@
 
 <!-- Form Uiverse.io by Pinparker - Modificado -->
 <aside>
-<form class="form">
-    <div class="form-title"><span>Regístrate para seguir aprendiendo</span></div>
-    <div class="title-2"><span>UpAcademy</span></div>
+    <form class="form" th:action="@{/academy/enviarEstudent}" method="post" th:object="${estudent}">
+        <div class="form-title"><span>Regístrate para seguir aprendiendo</span></div>
+        <div class="title-2"><span>UpAcademy</span></div>
 
-    <!-- Nombre -->
-    <div class="input-container">
-        <input placeholder="Nombre" type="text" class="input-field" />
-    </div>
+        <div class="input-container">
+            <input type="number" hidden th:field="*{id}" name="id" id="id" class="input-field"
+                   minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
+        </div>
 
-    <!-- Apellido -->
-    <div class="input-container">
-        <input placeholder="Apellido" type="text" class="input-field" />
-    </div>
+        <!-- Nombre -->
+        <div class="input-container">
+            <input placeholder="Nombre" type="text" name="nombre" class="input-field" required
+                   minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
 
-    <!-- Fecha de nacimiento (DD/MM/AAAA) -->
-    <div class="input-container">
-        <input placeholder="Fecha de nacimiento (DD/MM/AAAA)" type="text" class="input-field" />
-    </div>
+        </div>
 
-    <!-- Email -->
-    <div class="input-container">
-        <input placeholder="Email" type="email" class="input-field" />
-    </div>
+        <!-- Apellido -->
+        <div class="input-container">
+            <input placeholder="Apellido" type="text" name="apellido" class="input-field" required
+                   minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
 
-    <!-- Teléfono -->
-    <div class="input-container">
-        <input placeholder="Teléfono (ej: +593 123 456 789)" type="tel" class="input-field" />
-    </div>
+        </div>
 
-    <!-- Dirección -->
-    <div class="input-container">
-        <input placeholder="Dirección" type="text" class="input-field" />
-    </div>
+        <!-- Fecha de nacimiento -->
+        <div class="input-container">
+            <input placeholder="Fecha de nacimiento" type="date" name="fechaNacimiento" class="input-field" required
+                   max="" />
 
-    <!-- Fecha de inscripción (DD/MM/AAAA) -->
-    <div class="input-container">
-        <input placeholder="Fecha de inscripción (DD/MM/AAAA)" type="text" class="input-field" />
-    </div>
+        </div>
 
-    <!-- Nivel de inglés actual -->
-    <div class="input-container">
-        <select class="input-field">
-            <option value="" disabled selected>Selecciona tu nivel de inglés actual</option>
-            <option value="A1">A1 - Principiante</option>
-            <option value="A2">A2 - Básico</option>
-            <option value="B1">B1 - Intermedio</option>
-            <option value="B2">B2 - Intermedio Alto</option>
-            <option value="C1">C1 - Avanzado</option>
-            <option value="C2">C2 - Maestría</option>
-            <option value="ninguno">Ninguno - Empiezo desde cero</option>
-        </select>
-    </div>
+        <!-- Email -->
+        <div class="input-container">
+            <input placeholder="Email" type="email" name="email" class="input-field" required
+                   maxlength="100" />
 
-    <!-- Sección de estrellas (manteniendo el diseño original) -->
-    <section class="bg-stars">
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-        <span class="star"></span>
-    </section>
+        </div>
 
-    <button class="submit" type="submit">
-        <span class="sign-text">Regístrate es Gratis</span>
-    </button>
-</form>
+        <!-- Teléfono -->
+        <div class="input-container">
+            <input placeholder="Teléfono (ej: +593 123 456 789)" type="tel" name="telefono" class="input-field" required
+                   pattern="[0-9+\s()-]{7,20}" />
+
+        </div>
+
+        <!-- Dirección -->
+        <div class="input-container">
+            <input placeholder="Dirección" type="text" name="direccion" class="input-field" required
+                   minlength="5" maxlength="200" />
+
+        </div>
+
+        <!-- Fecha de inscripción -->
+        <div class="input-container">
+            <input placeholder="Fecha de inscripción" type="date" name="fechaInscripcion" class="input-field" required />
+
+        </div>
+
+        <!-- Nivel de inglés actual -->
+        <div class="input-container">
+            <select name="nivelIngles" class="input-field" required>
+                <option value="" disabled selected>Selecciona tu nivel de inglés actual</option>
+                <option value="A1">A1 - Principiante</option>
+                <option value="A2">A2 - Básico</option>
+                <option value="B1">B1 - Intermedio</option>
+                <option value="B2">B2 - Intermedio Alto</option>
+                <option value="C1">C1 - Avanzado</option>
+                <option value="C2">C2 - Maestría</option>
+            </select>
+
+        </div>
+
+        <!-- Sección de estrellas (manteniendo el diseño original) -->
+        <section class="bg-stars">
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+        </section>
+
+        <button class="submit" type="submit">
+            <span class="sign-text">Regístrate es Gratis</span>
+        </button>
+    </form>
 </aside>
 
 

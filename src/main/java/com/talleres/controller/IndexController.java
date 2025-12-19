@@ -10,9 +10,4 @@ public class IndexController {
     public String incio (){
         return "index";
     }
-
-    @GetMapping("/formulario")
-    public String registroFormulario (){
-        return "/pages/formulario";
-    }
 }

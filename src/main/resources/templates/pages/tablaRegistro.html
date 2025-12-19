@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/css/tabla.css}">
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Tabla Registro</title>
+</head>
+<body>
+
+<!-- Barra de navegacion superior (primera línea) -->
+<nav class="bg-white border-b border-gray-200 py-2">
+    <div class="max-w-screen-xl mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <!-- Logo y título -->
+            <div class="flex items-center space-x-2">
+                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-8" alt="UpAcademy Logo" />
+                <span class="text-xl font-bold text-gray-800">UpAcademy</span>
+            </div>
+
+            <!-- Menú principal -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
+            </div>
+
+            <!-- Botones de acceso -->
+            <div class="flex items-center space-x-4">
+                <a th:href="@{/academy/formulario}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
+                    Regístrate
+                </a>
+                <div class="relative">
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- tabla del registro -->
+
+<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+
+    <form th:action="@{/academy}" method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="buscarEstudiante" class="form-control" placeholder="Buscar Estudiante" th:value="${buscarEstudiante}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+        <thead class="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">
+        <tr>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Nombre
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Apellido
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Fecha de nacimiento
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Email
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Telefono
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Direccion
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Fecha de inscripcion
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Nivel de Ingles
+            </th>
+            <th scope="col" class="px-6 py-3 font-medium">
+                Acciones
+            </th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="estudent: ${estudents}" class="bg-neutral-primary border-b border-default">
+            <th th:text="${estudent.nombre}" scope="row" class="px-6 py-4 font-bold text-heading whitespace-nowrap">
+            </th>
+            <td th:text="${estudent.apellido}" class="px-6 py-4 font-bold">
+            </td>
+            <td th:text="${estudent.fechaNacimiento}" class="px-6 py-4 font-bold">
+            </td>
+            <td th:text="${estudent.email}" class="px-6 py-4 font-bold">
+            </td>
+            <td th:text="${estudent.telefono}" class="px-6 py-4 font-bold">
+            </td>
+            <td th:text="${estudent.direccion}" class="px-6 py-4 font-bold">
+            </td>
+            <td th:text="${estudent.fechaInscripcion}" class="px-6 py-4 font-bold">
+            </td>
+            <td th:text="${estudent.nivelIngles}" class="px-6 py-4 font-bold">
+            </td>
+
+            <td class="px-6 py-4">
+                <!-- Botón Actualizar -->
+                <a th:href="@{/academy/editarEstudiante/} + ${estudent.id}"
+                   class="inline-block w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-center">
+                    Actualizar
+                </a>
+
+                <!-- Botón Eliminar con margen superior -->
+                <form th:action="@{/academy/eliminarEstudiante/} + ${estudent.id}"
+                      method="post"
+                      class="mt-2 w-full">  <!-- mt-2 para separación y w-full para ancho completo -->
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit"
+                            class="inline-block w-full px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-center"
+                            onclick="return confirm('¿Estás seguro de eliminar este registro?')">
+                        Eliminar
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
