@@ -70,62 +70,54 @@
         <div class="title-2"><span>UpAcademy</span></div>
 
         <div class="input-container">
-            <input type="number" hidden th:field="*{id}" name="id" id="id" class="input-field"
-                   minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
+            <input type="number" hidden th:field="*{id}" name="id" id="id" class="input-field" minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
         </div>
 
         <!-- Nombre -->
         <div class="input-container">
-            <input placeholder="Nombre" type="text" name="nombre" class="input-field" required
-                   minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
-
+            <input placeholder="Nombre" type="text" name="nombre" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
         </div>
 
         <!-- Apellido -->
         <div class="input-container">
-            <input placeholder="Apellido" type="text" name="apellido" class="input-field" required
-                   minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
-
+            <input placeholder="Apellido" type="text" name="apellido" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
         </div>
 
         <!-- Fecha de nacimiento -->
         <div class="input-container">
-            <input placeholder="Fecha de nacimiento" type="date" name="fechaNacimiento" class="input-field" required
-                   max="" />
-
+            <label class="block text-sm font-bold text-white mb-1">Fecha de nacimiento</label>
+            <input type="date" name="fechaNacimiento" class="input-field" required max="" />
         </div>
 
         <!-- Email -->
         <div class="input-container">
-            <input placeholder="Email" type="email" name="email" class="input-field" required
-                   maxlength="100" />
-
+            <input placeholder="Email" type="email" name="email" class="input-field" required maxlength="100" />
         </div>
 
         <!-- Teléfono -->
         <div class="input-container">
-            <input placeholder="Teléfono (ej: +593 123 456 789)" type="tel" name="telefono" class="input-field" required
-                   pattern="[0-9+\s()-]{7,20}" />
-
+            <input placeholder="Numero de Telefono" type="tel" name="telefono" id="telefono" class="input-field" required pattern="^[0-9]{10}$" title="Debe contener exactamente 10 dígitos numéricos"/>
+            <div id="telefono-error" class="error-message" style="display: none; color: red; font-size: 12px; margin-top: 5px;">
+                Error: El teléfono debe tener exactamente 10 números
+            </div>
         </div>
+
 
         <!-- Dirección -->
         <div class="input-container">
-            <input placeholder="Dirección" type="text" name="direccion" class="input-field" required
-                   minlength="5" maxlength="200" />
-
+            <input placeholder="Dirección" type="text" name="direccion" class="input-field" required minlength="5" maxlength="200" />
         </div>
 
         <!-- Fecha de inscripción -->
         <div class="input-container">
+            <label class="block text-sm font-bold text-white mb-1">Fecha de inscripcion</label>
             <input placeholder="Fecha de inscripción" type="date" name="fechaInscripcion" class="input-field" required />
-
         </div>
 
         <!-- Nivel de inglés actual -->
         <div class="input-container">
             <select name="nivelIngles" class="input-field" required>
-                <option value="" disabled selected>Selecciona tu nivel de inglés actual</option>
+                <option value="" disabled selected>Selecciona tu nivel de ingles actual</option>
                 <option value="A1">A1 - Principiante</option>
                 <option value="A2">A2 - Básico</option>
                 <option value="B1">B1 - Intermedio</option>
@@ -133,16 +125,9 @@
                 <option value="C1">C1 - Avanzado</option>
                 <option value="C2">C2 - Maestría</option>
             </select>
-
         </div>
 
-        <!-- Sección de estrellas (manteniendo el diseño original) -->
-        <section class="bg-stars">
-            <span class="star"></span>
-            <span class="star"></span>
-            <span class="star"></span>
-            <span class="star"></span>
-        </section>
+
 
         <button class="submit" type="submit">
             <span class="sign-text">Regístrate es Gratis</span>
