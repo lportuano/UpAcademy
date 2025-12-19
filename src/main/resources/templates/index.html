@@ -27,8 +27,8 @@
 
             <!-- Menú principal -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
+                <a th:href="@{/academy/formulario}" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
+                <a th:href="@{/academy/formulario}" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
             </div>
 
             <!-- Botones de acceso -->
@@ -93,6 +93,7 @@
 
     <div class="cursos-grid">
         <!-- Tarjeta 1: Nivel A1 - Principiante -->
+        <a th:href="@{/academy/formulario}">
         <div class="curso-card">
             <div class="curso-imagen">
                 <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng.png}" alt="Nivel A1 de inglés" />
@@ -103,20 +104,25 @@
                 <p class="curso-descripcion">Principiante - Comunicación básica</p>
             </div>
         </div>
+        </a>
 
         <!-- Tarjeta 2: Nivel A2 - Básico -->
+        <a th:href="@{/academy/formulario}">
         <div class="curso-card">
             <div class="curso-imagen">
                 <img th:src="@{https://ik.imagekit.io/pidh9ua3b/traduccion.png}" alt="Nivel A2 de inglés" />
                 <div class="nivel-badge">A2</div>
             </div>
-            <div class="curso-content">
+            <div th:href="@{/academy/formulario}" class="curso-content">
                 <h3 class="curso-nivel">Nivel A2</h3>
-                <p class="curso-descripcion">Básico - Conversaciones simples</p>
+                <p class="curso-descripcion">Básico-Conversaciones simples</p>
             </div>
         </div>
+        </a>
+
 
         <!-- Tarjeta 3: Nivel B1 - Intermedio -->
+        <a th:href="@{/academy/formulario}">
         <div class="curso-card">
             <div class="curso-imagen">
                 <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng%20(1).png}" alt="Nivel B1 de inglés" />
@@ -127,8 +133,10 @@
                 <p class="curso-descripcion">Intermedio - Fluidez básica</p>
             </div>
         </div>
+        </a>
 
         <!-- Tarjeta 4: Nivel B2 - Intermedio Alto -->
+        <a th:href="@{/academy/formulario}">
         <div class="curso-card">
             <div class="curso-imagen">
                 <img th:src="@{https://ik.imagekit.io/pidh9ua3b/hola.png}" alt="Nivel B2 de inglés" />
@@ -139,8 +147,10 @@
                 <p class="curso-descripcion">Intermedio alto - Comunicación fluida</p>
             </div>
         </div>
+        </a>
 
         <!-- Tarjeta 5: Nivel C1 - Avanzado -->
+        <a th:href="@{/academy/formulario}">
         <div class="curso-card">
             <div class="curso-imagen">
                 <img th:src="@{https://ik.imagekit.io/pidh9ua3b/viaje.png}" alt="Nivel C1 de inglés" />
@@ -151,8 +161,10 @@
                 <p class="curso-descripcion">Avanzado - Expresión compleja</p>
             </div>
         </div>
+        </a>
 
         <!-- Tarjeta 6: Nivel C2 - Maestría -->
+        <a th:href="@{/academy/formulario}">
         <div class="curso-card">
             <div class="curso-imagen">
                 <img th:src="@{https://ik.imagekit.io/pidh9ua3b/educacion.png}" alt="Nivel C2 de inglés" />
@@ -163,6 +175,7 @@
                 <p class="curso-descripcion">Maestría - Dominio nativo</p>
             </div>
         </div>
+        </a>
     </div>
 </div>
 

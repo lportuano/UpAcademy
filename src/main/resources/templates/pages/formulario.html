@@ -105,7 +105,8 @@
 
         <!-- Dirección -->
         <div class="input-container">
-            <input placeholder="Dirección" type="text" name="direccion" class="input-field" required minlength="5" maxlength="200" />
+            <input placeholder="Dirección" type="text" name="direccion" class="input-field" required minlength="5" maxlength="200" pattern="^[^0-9]*$" title="La dirección no debe contener números" oninput="validarDireccion(this)"/>
+            <div class="error-message" id="direccion-error"></div>
         </div>
 
         <!-- Fecha de inscripción -->
