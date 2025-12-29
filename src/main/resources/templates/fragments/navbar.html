@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<nav th:fragment="navbar" class="bg-white border-b border-gray-200 py-2 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-screen-xl mx-auto px-4">
+        <div class="flex justify-between items-center">
+
+            <div class="flex items-center space-x-2">
+                <a th:href="@{/index}" class="flex items-center space-x-2">
+                    <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-10 rounded-lg" alt="UpAcademy Logo" />
+                    <span class="text-xl font-bold text-gray-800 tracking-tight">UpAcademy</span>
+                </a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+
+                <a th:href="@{/index}" class="text-gray-600 hover:text-black font-medium px-3 py-2 text-sm transition-colors">HOME</a>
+
+                <div class="relative inline-block text-left">
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdownNavbar" class="text-gray-700 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center transition-all" type="button">
+                        Gestión Académica
+                        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                        </svg>
+                    </button>
+
+                    <div id="dropdownNavbar" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-xl border border-gray-100 w-52">
+                        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a th:href="@{/academy/formulario}" class="block px-4 py-2 hover:bg-purple-50 hover:text-purple-700">Regístrate</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/academy}" class="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-700">Lista Estudiantes</a>
+                            </li>
+                            <li class="border-t border-gray-100 my-1"></li>
+                            <li>
+                                <a th:href="@{/usuarios/formUsuario}" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-700">Registrar Usuario</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/usuarios}" class="block px-4 py-2 hover:bg-green-50 hover:text-green-700">Lista Usuarios</a>
+                            </li>
+                            <li class="border-t border-gray-100 my-1"></li>
+                            <li>
+                                <a th:href="@{/academy/comprar}" class="block px-4 py-2 font-bold text-orange-600 hover:bg-orange-50">🛒 INSCRIBIRSE</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2 ml-4">
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="bg-gray-800 hover:bg-black text-white font-bold px-5 py-2.5 rounded-lg transition-all text-sm shadow-sm">
+                        INICIAR SESIÓN
+                    </a>
+
+                    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" class="inline">
+                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold px-5 py-2.5 rounded-lg transition-all text-sm shadow-sm">
+                            CERRAR SESIÓN
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

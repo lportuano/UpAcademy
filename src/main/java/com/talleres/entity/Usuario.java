@@ -6,9 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Data //crea los getter y setters
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 public class Usuario {
 
@@ -22,4 +23,5 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     private Rol rol;
+
 }

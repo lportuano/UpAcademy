@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso | UpAcademy</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/formulario.css}">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-white flex flex-col min-h-screen">
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="flex-grow">
+    <section class="registro-container">
+        <div class="estudiantes-col">
+            <img th:src="@{https://i.postimg.cc/TP8BxJkH/pngkit-jovenes-png-4074603.png}" alt="Acceso UpAcademy" class="img-estudiantes">
+            <div class="glow-effect"></div>
+        </div>
+    </section>
+
+    <aside>
+        <form class="form" th:action="@{/login}" method="post">
+            <div class="form-title"><span>Iniciar Sesión</span></div>
+            <div class="title-2"><span>UpAcademy</span></div>
+
+            <div th:if="${param.error}" class="bg-red-500/20 border border-red-500 text-red-100 text-xs p-2 rounded mb-4 text-center">
+                Usuario o contraseña incorrectos.
+            </div>
+
+            <div class="input-container">
+                <input placeholder="Nombre de Usuario" type="text" name="username" class="input-field" required />
+            </div>
+            <div class="input-container">
+                <input placeholder="Contraseña" type="password" name="password" class="input-field" required />
+            </div>
+            <button class="submit" type="submit">
+                <span class="sign-text">Entrar</span>
+            </button>
+        </form>
+    </aside>
+</main>
+
+
+</body>
+</html>

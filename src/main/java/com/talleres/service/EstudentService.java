@@ -59,7 +59,9 @@ public class EstudentService {
     //ELIMINAR ESTUDIANTE
     public void eliminarEstudiante(Long id){
         Estudent estudent = buscarEstudianteById(id)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Estudiante no EXISTE"));
+                .orElseThrow(()-> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,"Estudiante no EXISTE"
+                ));
         estudentRepository.delete(estudent);
     }
 

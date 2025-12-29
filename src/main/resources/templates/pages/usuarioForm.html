@@ -2,106 +2,66 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
     <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
-
     <link rel="stylesheet" th:href="@{/css/formulario.css}">
-
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
     <title>Formulario Usuario</title>
 </head>
-<body>
+<body class="flex flex-col min-h-screen bg-white">
 
-<!-- Barra de navegacion superior (primera línea) -->
-<nav class="bg-white border-b border-gray-200 py-2">
-    <div class="max-w-screen-xl mx-auto px-4">
-        <div class="flex justify-between items-center">
-            <!-- Logo y título -->
-            <div class="flex items-center space-x-2">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-8" alt="UpAcademy Logo" />
-                <span class="text-xl font-bold text-gray-800">UpAcademy</span>
-            </div>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-            <!-- Menú principal -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
-            </div>
-
-            <!-- Botones de acceso -->
-            <div class="flex items-center space-x-4">
-                <a th:href="@{/usuarios}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
-                    Lista Usuarios
-                </a>
-                <div class="relative">
+<main class="flex-grow">
+    <nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300 border-b border-gray-100">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-800">Gestión de Usuarios</h1>
+                    <p class="text-gray-600 hidden md:block">Administra los usuarios del sistema</p>
                 </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- Barra de navegacion inferior (segunda línea) -->
-<nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300">
-    <div class="max-w-screen-xl mx-auto px-4 py-3">
-        <div class="flex justify-between items-center">
-            <!-- Título del curso -->
-            <div class="flex items-center space-x-4">
-                <h1 class="text-2xl font-bold text-gray-800">Gestión de Usuarios</h1>
-                <p class="text-gray-600 hidden md:block">Administra los usuarios del sistema</p>
+    <section class="registro-container">
+        <div class="estudiantes-col">
+            <img th:src="@{https://i.postimg.cc/TP8BxJkH/pngkit-jovenes-png-4074603.png}" alt="Usuarios UpAcademy" class="img-estudiantes">
+            <div class="glow-effect"></div>
+        </div>
+    </section>
+
+    <aside>
+        <form class="form" th:action="@{${usuario.id == null ? '/usuarios/registrarUsuario' : '/usuarios/actualizarUsuario/' + usuario.id}}" method="post" th:object="${usuario}">
+            <div class="form-title"><span th:text="${usuario.id == null ? 'Registro Usuario' : 'Actualizar Usuario'}"></span></div>
+            <div class="title-2"><span>UpAcademy</span></div>
+            <input type="hidden" th:field="*{id}" />
+            <div class="input-container">
+                <input placeholder="Nombre Completo" type="text" th:field="*{nombre}" class="input-field" required />
             </div>
-        </div>
-    </div>
-</nav>
+            <div class="input-container">
+                <input placeholder="Username" type="text" th:field="*{username}" class="input-field" required />
+            </div>
+            <div class="input-container">
+                <input placeholder="Contraseña" type="password" th:field="*{password}" class="input-field" th:required="${usuario.id == null}"/>
+            </div>
+            <button class="submit" type="submit">
+                <span class="sign-text" th:text="${usuario.id == null ? 'Registrar Usuario' : 'Actualizar Usuario'}"></span>
+            </button>
+        </form>
+    </aside>
+</main>
 
-<section class="registro-container">
-    <div class="estudiantes-col">
-        <img th:src="@{https://i.postimg.cc/TP8BxJkH/pngkit-jovenes-png-4074603.png}" alt="Usuarios UpAcademy" class="img-estudiantes">
-        <div class="glow-effect"></div> </div>
-</section>
-
-<!-- Form Uiverse.io by Pinparker - Modificado -->
-<aside>
-    <form class="form" th:action="@{${usuario.id == null ? '/usuarios/registrarUsuario' : '/usuarios/actualizarUsuario/' + usuario.id}}"
-          method="post" th:object="${usuario}">
-        <div class="form-title">
-            <span th:text="${usuario.id == null ? 'Registro Usuario' : 'Actualizar Usuario'}"></span>
-        </div>
-        <div class="title-2"><span>UpAcademy</span></div>
-
-        <input type="hidden" th:field="*{id}" />
-
-        <!-- Mensajes -->
-        <div th:if="${success}" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-            <span th:text="${success}"></span>
-        </div>
-        <div th:if="${error}" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            <span th:text="${error}"></span>
-        </div>
-
-        <div class="input-container">
-            <input placeholder="Nombre Completo" type="text" th:field="*{nombre}" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
-        </div>
-
-        <div class="input-container">
-            <input placeholder="Username" type="text" th:field="*{username}" class="input-field" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+"/>
-            <small class="text-white text-xs">Solo letras, números y guión bajo</small>
-        </div>
-
-        <div class="input-container">
-            <input placeholder="Contraseña" type="password" th:field="*{password}" class="input-field"
-                   th:required="${usuario.id == null}" minlength="6" maxlength="100"/>
-            <small class="text-white text-xs" th:if="${usuario.id != null}">Dejar en blanco para no cambiar</small>
-            <small class="text-white text-xs" th:if="${usuario.id == null}">Mínimo 6 caracteres</small>
-        </div>
-
-        <button class="submit" type="submit">
-            <span class="sign-text" th:text="${usuario.id == null ? 'Registrar Usuario' : 'Actualizar Usuario'}"></span>
-        </button>
-    </form>
-</aside>
+<footer class="footer footer-horizontal footer-center bg-purple-900 text-purple-100 p-10 mt-auto">
+    <aside>
+        <figure class="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow-lg mx-auto mb-4">
+            <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" alt="Logo UpAcademy" class="w-full h-full object-cover">
+        </figure>
+        <p class="font-bold">UpAcademy<br />Educando desde 2025</p>
+        <p>Roy Armijos - Bryan Guanoluisa</p>
+    </aside>
+</footer>
 
 </body>
 </html>

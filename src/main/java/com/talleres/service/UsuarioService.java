@@ -25,59 +25,44 @@ public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // Leer
-    public List<Usuario> mostrarUsuarios() {
+    //Leer
+    public List<Usuario> mostrarUsuarios(){
         return usuarioRepository.findAll();
     }
 
-    // Buscar por ID
-    public Optional<Usuario> buscarUsuarioById(Long id) {
+    //buscar por ID
+    public Optional<Usuario> buscarUsuarioById(Long id){
         return usuarioRepository.findById(id);
     }
 
-    // Buscar por username
-    public Optional<Usuario> buscarUsuarioByUsername(String username) {
-        return usuarioRepository.findByUsername(username);
-    }
+    //Guardar Usuario
+    public Usuario guardarUsuario(Usuario usuario){
 
-    // Guardar Usuario
-    public Usuario guardarUsuario(Usuario usuario) {
-        // Encriptar la contraseña antes de guardar
+        //Encriptar la contraseña antes de guardar
         String passwordEncriptada = passwordEncoder.encode(usuario.getPassword());
         usuario.setPassword(passwordEncriptada);
 
-        // Si no se especifica rol, asignar ESTUDIANTE por default
-        if (usuario.getRol() == null) {
-            usuario.setRol(Rol.ROLE_ESTUDIANTE);
-        }
-
-        // Verificar si el username ya existe
-        if (usuarioRepository.findByUsername(usuario.getUsername()).isPresent()) {
-            throw new RuntimeException("El username ya está en uso");
-        }
-
+        //Asignar el rol de esudiante por default
+        usuario.setRol(Rol.ROLE_ESTUDIANTE);
+        usuarioRepository.save(usuario);
         return usuarioRepository.save(usuario);
     }
 
-    // Actualizar Usuario
-    public Usuario actualizarUsuario(Long id, Usuario usuario) {
+    //Actualizar Usuario
+    public Usuario actualizarUsuario(Long id, Usuario usuario){
         Usuario usuarioExistente = buscarUsuarioById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no existe"));
-
         usuarioExistente.setNombre(usuario.getNombre());
         usuarioExistente.setUsername(usuario.getUsername());
-        usuarioExistente.setRol(usuario.getRol());
-
-        // Actualizar el password solo si se proporciona uno nuevo
-        if (usuario.getPassword() != null && !usuario.getPassword().trim().isEmpty()) {
-            usuarioExistente.setPassword(passwordEncoder.encode(usuario.getPassword().trim()));
+        //Actualizar el password solo si el usuario la cambia
+        if (usuario.getPassword() != null && usuario.getPassword().isBlank()){
+            usuarioExistente.setPassword(passwordEncoder.encode(usuario.getPassword()));
         }
-
         return usuarioRepository.save(usuarioExistente);
     }
 
-    // Eliminar Usuario
-    public void eliminarUsuario(Long id) {
+    //Eliminar Usuario
+    public void eliminarUsuario(Long id){
         Usuario usuario = buscarUsuarioById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Usuario no existe"
@@ -87,13 +72,16 @@ public class UsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no existe: " + username));
 
+        //Buscar el usurio que coincida y si no lo encuentra lanza un exeption
+        Usuario usuario = usuarioRepository.findByUsername(username)
+                .orElseThrow(()->new UsernameNotFoundException("Usuario no existe: " +username));
+
+        //Usar builder para construir un objeto al que se conoce como objeto autenticado
         return User.builder()
                 .username(usuario.getUsername())
                 .password(usuario.getPassword())
-                .roles(usuario.getRol().name().replace("ROLE_", ""))
+                .authorities(usuario.getRol().name())
                 .build();
     }
 }

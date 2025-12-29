@@ -1,234 +1,141 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-
     <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
-
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
     <title> UP ACADEMY </title>
 </head>
-<body class="back">
+<body class="back flex flex-col min-h-screen">
 
-<!-- Barra de navegacion superior (primera línea) -->
-<nav class="bg-white border-b border-gray-200 py-2">
-    <div class="max-w-screen-xl mx-auto px-4">
-        <div class="flex justify-between items-center">
-            <!-- Logo y título -->
-            <div class="flex items-center space-x-2">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" class="h-8" alt="UpAcademy Logo" />
-                <span class="text-xl font-bold text-gray-800">UpAcademy</span>
-            </div>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-            <!-- Menú principal -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a th:href="@{/academy/formulario}" class="text-gray-700 hover:text-purple-600 font-medium">APRENDER</a>
-                <a th:href="@{/academy/formulario}" class="text-gray-700 hover:text-purple-600 font-medium">SOBRE NOSOTROS</a>
-            </div>
-
-            <!-- Botones de acceso -->
-            <div class="flex items-center space-x-4">
-                <a th:href="@{/academy/formulario}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
-                    Regístrate (Estudiantes)
-                </a>
-                <a th:href="@{/usuarios/formUsuario}" class="bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-lg transition-colors">
-                    Gestión de Usuarios
-                </a>
-                <div class="relative">
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<!-- Barra de navegacion inferior (segunda línea) -->
 <nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300">
     <div class="max-w-screen-xl mx-auto px-4 py-3">
         <div class="flex justify-between items-center">
-            <!-- Título del curso -->
             <div class="flex items-center space-x-4">
                 <h1 class="text-2xl font-bold text-gray-800">Aprende Inglés</h1>
-                <p class="text-gray-600 hidden md:block">Explora y aprende todo lo necesario sobre el Ingles.</p>
+                <p class="text-gray-600 hidden md:block">Explora y aprende todo lo necesario sobre el Inglés.</p>
             </div>
         </div>
     </div>
 </nav>
 
-<main class="main-content">
+<main class="main-content flex-grow">
     <div class="container">
         <h1 class="animated-hello">
-            <span>H</span>
-            <span>E</span>
-            <span>L</span>
-            <span>L</span>
-            <span>O</span>
-            <span>!</span>
+            <span>H</span><span>E</span><span>L</span><span>L</span><span>O</span><span>!</span>
         </h1>
+    </div>
+
+    <div class="main-section-centered">
+        <div class="centered-text-container">
+            <div class="text-content-centered">
+                <h3 class="texto-centered">Domina el inglés,</h3>
+                <h2 class="h2-centered">Abre tu mundo</h2>
+                <div class="separator-line"></div>
+                <p class="description-centered">
+                    Con nuestra oferta especial exclusiva, podrás aprender inglés de forma efectiva y alcanzar tus metas profesionales y personales.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cursos-section">
+        <div class="cursos-header">
+            <h2 class="cursos-title">Cursos de inglés</h2>
+            <p class="cursos-subtitle">Nos adaptamos a tu nivel para una educación con excelencia</p>
+        </div>
+
+        <div class="cursos-grid">
+            <a th:href="@{/academy/formulario}">
+                <div class="curso-card">
+                    <div class="curso-imagen">
+                        <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng.png}" alt="Nivel A1" />
+                        <div class="nivel-badge">A1</div>
+                    </div>
+                    <div class="curso-content">
+                        <h3 class="curso-nivel">Nivel A1</h3>
+                        <p class="curso-descripcion">Principiante - Comunicación básica</p>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/academy/formulario}">
+                <div class="curso-card">
+                    <div class="curso-imagen">
+                        <img th:src="@{https://ik.imagekit.io/pidh9ua3b/traduccion.png}" alt="Nivel A2" />
+                        <div class="nivel-badge">A2</div>
+                    </div>
+                    <div class="curso-content">
+                        <h3 class="curso-nivel">Nivel A2</h3>
+                        <p class="curso-descripcion">Básico - Conversaciones simples</p>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/academy/formulario}">
+                <div class="curso-card">
+                    <div class="curso-imagen">
+                        <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng%20(1).png}" alt="Nivel B1" />
+                        <div class="nivel-badge">B1</div>
+                    </div>
+                    <div class="curso-content">
+                        <h3 class="curso-nivel">Nivel B1</h3>
+                        <p class="curso-descripcion">Intermedio - Fluidez básica</p>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/academy/formulario}">
+                <div class="curso-card">
+                    <div class="curso-imagen">
+                        <img th:src="@{https://ik.imagekit.io/pidh9ua3b/hola.png}" alt="Nivel B2" />
+                        <div class="nivel-badge">B2</div>
+                    </div>
+                    <div class="curso-content">
+                        <h3 class="curso-nivel">Nivel B2</h3>
+                        <p class="curso-descripcion">Intermedio alto - Comunicación fluida</p>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/academy/formulario}">
+                <div class="curso-card">
+                    <div class="curso-imagen">
+                        <img th:src="@{https://ik.imagekit.io/pidh9ua3b/viaje.png}" alt="Nivel C1" />
+                        <div class="nivel-badge">C1</div>
+                    </div>
+                    <div class="curso-content">
+                        <h3 class="curso-nivel">Nivel C1</h3>
+                        <p class="curso-descripcion">Avanzado - Expresión compleja</p>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/academy/formulario}">
+                <div class="curso-card">
+                    <div class="curso-imagen">
+                        <img th:src="@{https://ik.imagekit.io/pidh9ua3b/educacion.png}" alt="Nivel C2" />
+                        <div class="nivel-badge">C2</div>
+                    </div>
+                    <div class="curso-content">
+                        <h3 class="curso-nivel">Nivel C2</h3>
+                        <p class="curso-descripcion">Maestría - Dominio nativo</p>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </main>
 
-<!-- Sección principal con texto centrado -->
-<div class="main-section-centered">
-    <div class="centered-text-container">
-        <div class="text-content-centered">
-            <h3 class="texto-centered">Domina el inglés,</h3>
-            <h2 class="h2-centered">Abre tu mundo</h2>
-            <div class="separator-line"></div>
-            <p class="description-centered">
-                Con nuestra oferta especial exclusiva, podrás aprender inglés de forma efectiva y alcanzar tus metas profesionales y personales.
-            </p>
-        </div>
-    </div>
-</div>
-
-
-<!-- Sección de cursos de inglés por niveles -->
-<div class="cursos-section">
-    <div class="cursos-header">
-        <h2 class="cursos-title">Cursos de inglés</h2>
-        <p class="cursos-subtitle">Nos adaptamos a tu nivel para una educacion con excelencia</p>
-    </div>
-
-    <div class="cursos-grid">
-        <!-- Tarjeta 1: Nivel A1 - Principiante -->
-        <a th:href="@{/academy/formulario}">
-        <div class="curso-card">
-            <div class="curso-imagen">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng.png}" alt="Nivel A1 de inglés" />
-                <div class="nivel-badge">A1</div>
-            </div>
-            <div class="curso-content">
-                <h3 class="curso-nivel">Nivel A1</h3>
-                <p class="curso-descripcion">Principiante - Comunicación básica</p>
-            </div>
-        </div>
-        </a>
-
-        <!-- Tarjeta 2: Nivel A2 - Básico -->
-        <a th:href="@{/academy/formulario}">
-        <div class="curso-card">
-            <div class="curso-imagen">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/traduccion.png}" alt="Nivel A2 de inglés" />
-                <div class="nivel-badge">A2</div>
-            </div>
-            <div th:href="@{/academy/formulario}" class="curso-content">
-                <h3 class="curso-nivel">Nivel A2</h3>
-                <p class="curso-descripcion">Básico-Conversaciones simples</p>
-            </div>
-        </div>
-        </a>
-
-
-        <!-- Tarjeta 3: Nivel B1 - Intermedio -->
-        <a th:href="@{/academy/formulario}">
-        <div class="curso-card">
-            <div class="curso-imagen">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng%20(1).png}" alt="Nivel B1 de inglés" />
-                <div class="nivel-badge">B1</div>
-            </div>
-            <div class="curso-content">
-                <h3 class="curso-nivel">Nivel B1</h3>
-                <p class="curso-descripcion">Intermedio - Fluidez básica</p>
-            </div>
-        </div>
-        </a>
-
-        <!-- Tarjeta 4: Nivel B2 - Intermedio Alto -->
-        <a th:href="@{/academy/formulario}">
-        <div class="curso-card">
-            <div class="curso-imagen">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/hola.png}" alt="Nivel B2 de inglés" />
-                <div class="nivel-badge">B2</div>
-            </div>
-            <div class="curso-content">
-                <h3 class="curso-nivel">Nivel B2</h3>
-                <p class="curso-descripcion">Intermedio alto - Comunicación fluida</p>
-            </div>
-        </div>
-        </a>
-
-        <!-- Tarjeta 5: Nivel C1 - Avanzado -->
-        <a th:href="@{/academy/formulario}">
-        <div class="curso-card">
-            <div class="curso-imagen">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/viaje.png}" alt="Nivel C1 de inglés" />
-                <div class="nivel-badge">C1</div>
-            </div>
-            <div class="curso-content">
-                <h3 class="curso-nivel">Nivel C1</h3>
-                <p class="curso-descripcion">Avanzado - Expresión compleja</p>
-            </div>
-        </div>
-        </a>
-
-        <!-- Tarjeta 6: Nivel C2 - Maestría -->
-        <a th:href="@{/academy/formulario}">
-        <div class="curso-card">
-            <div class="curso-imagen">
-                <img th:src="@{https://ik.imagekit.io/pidh9ua3b/educacion.png}" alt="Nivel C2 de inglés" />
-                <div class="nivel-badge">C2</div>
-            </div>
-            <div class="curso-content">
-                <h3 class="curso-nivel">Nivel C2</h3>
-                <p class="curso-descripcion">Maestría - Dominio nativo</p>
-            </div>
-        </div>
-        </a>
-    </div>
-</div>
-
-</body>
-
 <footer class="footer footer-horizontal footer-center bg-purple-900 text-purple-100 p-10">
     <aside>
-        <figure class="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow-lg">
-            <img
-                    th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}"
-                    alt="Logo UpAcademy"
-                    class="w-full h-full object-cover"
-            >
+        <figure class="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow-lg mx-auto mb-4">
+            <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" alt="Logo UpAcademy" class="w-full h-full object-cover">
         </figure>
-        <p class="font-bold">
-            UpAcademy
-            <br />
-            Educando desde 2025
-        </p>
+        <p class="font-bold">UpAcademy<br />Educando desde 2025</p>
         <p>Roy Armijos - Bryan Guanoluisa</p>
     </aside>
-    <nav>
-        <div class="grid grid-flow-col gap-4">
-            <a th:href="@{https://www.facebook.com/share/1DxuCrURaF/}" class="hover:text-purple-300 transition-colors">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        class="fill-current">
-                    <path
-                            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-                </svg>
-            </a>
-
-            <div class="h-6 w-0.5 bg-gray-500"></div>
-
-            <a th:href="@{https://www.instagram.com/up.academy.uio?igsh=MXB4djVpY2dzNHlkZw==}" class="hover:text-purple-300 transition-colors">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        class="fill-current">
-                    <path
-                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
-                </svg>
-            </a>
-        </div>
-    </nav>
 </footer>
 
+</body>
 </html>
