@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
+  <link rel="stylesheet" th:href="@{/css/formulario.css}">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Formulario Docente</title>
+</head>
+<body class="flex flex-col min-h-screen bg-white">
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300 border-b">
+  <div class="max-w-screen-xl mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <h1 class="text-2xl font-bold text-gray-800">Aprende Inglés</h1>
+        <p class="text-gray-600 hidden md:block">Explora y aprende todo lo necesario sobre el Ingles.</p>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="flex-grow">
+  <section class="registro-container">
+    <div class="estudiantes-col">
+      <img th:src="@{https://i.postimg.cc/TP8BxJkH/pngkit-jovenes-png-4074603.png}" alt="Estudiantes UpAcademy" class="img-estudiantes">
+      <div class="glow-effect"></div>
+    </div>
+  </section>
+
+  <aside>
+    <form class="form" th:action="@{/academy/enviarDocente}" method="post" th:object="${usuario}">
+      <div class="form-title"><span>Registro / Actualización</span></div>
+      <div class="title-2"><span>UpAcademy</span></div>
+      <input type="hidden" th:field="*{id}" />
+
+      <div class="input-container">
+        <input placeholder="Nombre" type="text" th:field="*{nombre}" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
+      </div>
+      <div class="input-container">
+        <input placeholder="Apellido" type="text" th:field="*{apellido}" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Cédula:</label>
+        <input type="text"
+               th:field="*{cedula}"
+               maxlength="10"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+               placeholder="Ej: 1726354412"
+               required pattern="[0-9]{10}" title="La cédula debe tener 10 dígitos">
+        <p th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}" class="text-red-500 text-xs mt-1"></p>
+      </div>
+
+      <div class="input-container">
+        <label class="block text-sm font-bold text-white mb-1">Fecha de nacimiento</label>
+        <input type="date" th:field="*{fechaNacimiento}" class="input-field" required />
+      </div>
+      <div class="input-container">
+        <input placeholder="Email" type="email" th:field="*{email}" class="input-field" required maxlength="100" />
+      </div>
+      <div class="input-container">
+        <input placeholder="Número de Teléfono" type="tel" th:field="*{telefono}" class="input-field" required pattern="^[0-9]{10}$" title="Debe contener exactamente 10 dígitos"/>
+      </div>
+      <div class="input-container">
+        <input placeholder="Dirección" type="text" th:field="*{direccion}" class="input-field" required minlength="5" maxlength="200" />
+      </div>
+
+      <button class="submit" type="submit">
+        <span class="sign-text">Guardar Información</span>
+      </button>
+    </form>
+  </aside>
+</main>
+
+<footer class="footer footer-horizontal footer-center bg-purple-900 text-purple-100 p-10 mt-auto">
+  <aside>
+    <figure class="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow-lg mx-auto mb-4">
+      <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" alt="Logo UpAcademy" class="w-full h-full object-cover">
+    </figure>
+    <p class="font-bold">UpAcademy<br />Educando desde 2025</p>
+    <p>Roy Armijos - Bryan Guanoluisa</p>
+  </aside>
+</footer>
+
+</body>
+</html>
