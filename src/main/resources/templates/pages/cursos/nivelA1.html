@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Nivel A1 - UP ACADEMY</title>
+</head>
+<body class="bg-slate-50 min-h-screen">
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<header class="bg-purple-800 text-white py-12 px-6 shadow-lg">
+    <div class="max-w-4xl mx-auto">
+        <span class="bg-purple-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Nivel A1: Principiante</span>
+        <h1 class="text-4xl font-black mt-4">Greetings and Introductions</h1>
+        <p class="text-purple-200 mt-2 text-lg">Aprende a saludar y presentarte en inglés de forma natural.</p>
+    </div>
+</header>
+
+<main class="max-w-4xl mx-auto py-10 px-6">
+    <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <span class="text-purple-600 mr-2 text-3xl">01.</span> Common Greetings
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="card bg-white shadow-sm border border-gray-100 p-6 flex flex-row items-center space-x-4">
+                <div class="bg-green-100 p-3 rounded-lg text-2xl">👋</div>
+                <div><h3 class="font-bold text-gray-700">Hello / Hi</h3><p class="text-gray-500 text-sm">Hola</p></div>
+            </div>
+            <div class="card bg-white shadow-sm border border-gray-100 p-6 flex flex-row items-center space-x-4">
+                <div class="bg-yellow-100 p-3 rounded-lg text-2xl">☀️</div>
+                <div><h3 class="font-bold text-gray-700">Good Morning</h3><p class="text-gray-500 text-sm">Buenos días</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-20 border-t border-purple-200 pt-12">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-purple-200">
+            <div class="bg-purple-700 p-6 text-white">
+                <h3 class="text-2xl font-bold">📅 Schedule: Level <span th:text="${nivel}"></span></h3>
+                <p class="text-purple-100 text-sm">Clases programadas para principiantes.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-purple-50">
+                    <tr>
+                        <th class="px-6 py-4 text-purple-600 font-bold uppercase text-xs">Date</th>
+                        <th class="px-6 py-4 text-purple-600 font-bold uppercase text-xs">Time</th>
+                        <th class="px-6 py-4 text-purple-600 font-bold uppercase text-xs">Teacher</th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-purple-100">
+                    <tr th:if="${#lists.isEmpty(horarios)}"><td colspan="3" class="px-6 py-12 text-center text-slate-400 italic">No classes scheduled.</td></tr>
+                    <tr th:each="h : ${horarios}" class="hover:bg-purple-50 transition">
+                        <td class="px-6 py-4 font-bold text-slate-700" th:text="${h.fecha}"></td>
+                        <td class="px-6 py-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
+                                <span th:text="${h.horaInicio}"></span> - <span th:text="${h.horaFin}"></span>
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-slate-600" th:text="${h.docenteNombre}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

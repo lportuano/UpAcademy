@@ -31,31 +31,32 @@
                     <div id="dropdownNavbar" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-xl border border-gray-100 w-52">
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a th:href="@{/academy/formulario}" class="block px-4 py-2 hover:bg-purple-50 hover:text-purple-700 font-medium">Registro Estudiante</a>
+                                <a th:href="@{/academy/formulario}" class="block px-4 py-2 hover:bg-gray-50 hover:text-gray-900 font-medium">Registro Estudiante</a>
                             </li>
-
                             <li>
-                                <a th:href="@{/academy/formDocente}" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-700 font-medium">Registro Docente</a>
+                                <a th:href="@{/academy/formDocente}" class="block px-4 py-2 hover:bg-gray-50 hover:text-gray-900 font-medium">Registro Docente</a>
                             </li>
 
                             <li class="border-t border-gray-100 my-1"></li>
 
                             <li>
-                                <a th:href="@{/academy}" class="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-700">Lista Estudiantes</a>
+                                <a th:href="@{/academy}" class="block px-4 py-2 hover:bg-gray-50 hover:text-gray-900">Lista Estudiantes</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/academy}" class="block px-4 py-2 hover:bg-gray-50 hover:text-gray-900">Lista Docentes</a>
                             </li>
 
-                            <li>
-                                <a th:href="@{/academy}" class="block px-4 py-2 hover:bg-green-50 hover:text-green-700">Lista Docentes</a>
+                            <li sec:authorize="hasAnyRole('DOCENTE', 'ADMIN')">
+                                <a th:href="@{/horarios}" class="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-700 font-medium">📅 Gestión Horarios</a>
                             </li>
 
                             <li class="border-t border-gray-100 my-1"></li>
+
                             <li>
                                 <a th:href="@{/academy/comprar}" class="block px-4 py-2 font-bold text-orange-600 hover:bg-orange-50">🛒 INSCRIBIRSE</a>
                             </li>
-
                         </ul>
                     </div>
-
                 </div>
 
                 <div class="flex items-center space-x-2 ml-4">

@@ -1,10 +1,7 @@
 package com.talleres.config;
 
-import com.talleres.service.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,49 +12,50 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final UsuarioService usuarioService;
-
-    // Inyectamos el servicio mediante constructor
-    public SecurityConfig(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
-
-    // Definimos el Bean del encriptador aquí mismo
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(usuarioService);
-        // Usamos el bean de arriba
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
-    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // Permitir recursos estáticos sin login
-                        .requestMatchers("/css/**", "/js/**", "/images/**", "/vendor/**").permitAll()
+                        // 1. Permisos públicos: Cualquier persona puede ver el inicio y registrarse
+                        .requestMatchers("/", "/index", "/login", "/academy/formulario", "/academy/formDocente", "/usuarios/registrarUsuario").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/vendor/**", "/academy/**").permitAll()
 
-                        // Restricción de acceso por Roles
+                        // 2. Estudiantes: Acceso a sus cursos (la lógica del nivel se maneja en el Controller)
+                        .requestMatchers("/cursos/**").hasAnyRole("ADMIN", "ESTUDIANTE", "DOCENTE")
+
+                        // 3. Docentes: Pueden gestionar horarios y editar cursos
+                        .requestMatchers("/horarios/**").hasAnyRole("ADMIN", "DOCENTE")
+
+                        // 4. Administrador: Acceso total a la gestión de usuarios
                         .requestMatchers("/usuarios/gestionar/**").hasRole("ADMIN")
-                        .requestMatchers("/academy/editarDocente/**").hasAnyRole("ADMIN", "DOCENTE")
+                        .requestMatchers("/academy/editarDocente/**").hasRole("ADMIN")
+                        .requestMatchers("/academy/eliminarEstudiante/**").hasRole("ADMIN")
 
-                        // Todo lo demás requiere login
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/postLogin", true) // Lógica de redirección por rol
-                        .usernameParameter("cedula")         // Usamos tu campo de cédula
+                        .usernameParameter("cedula")
                         .passwordParameter("password")
+                        .defaultSuccessUrl("/postLogin", true)
                         .permitAll()
                 )
+
+                //mensaje de error
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            response.sendRedirect("/index?error=forbidden");
+                        })
+                )
+
                 .logout(logout -> logout
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)

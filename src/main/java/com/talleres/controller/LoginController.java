@@ -1,12 +1,20 @@
 package com.talleres.controller;
 
+import com.talleres.entity.Usuario;
+import com.talleres.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Optional;
+
 @Controller
 public class LoginController {
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/login")
     public String login() {
@@ -17,16 +25,34 @@ public class LoginController {
     public String dirigirPorRol(Authentication authenticator) {
         if (authenticator == null) return "redirect:/login";
 
-        User usuario = (User) authenticator.getPrincipal();
-        String role = usuario.getAuthorities().stream()
+        User usuarioSpring = (User) authenticator.getPrincipal();
+
+        String role = usuarioSpring.getAuthorities().stream()
                 .map(grantedAuthority -> grantedAuthority.getAuthority())
                 .findFirst()
                 .orElse("");
 
-        if (role.equals("ROLE_ADMIN") || role.equals("ROLE_DOCENTE")) {
-            return "redirect:/academy";
-        } else {
-            return "redirect:/index";
+        switch (role) {
+            case "ROLE_ADMIN":
+                return "redirect:/admin";
+
+            case "ROLE_DOCENTE":
+                return "redirect:/horarios";
+
+            case "ROLE_ESTUDIANTE":
+                Optional<Usuario> usuarioBD = usuarioService.buscarEstudianteByCedula(usuarioSpring.getUsername());
+
+                if (usuarioBD.isPresent()) {
+                    String nivel = usuarioBD.get().getNivelIngles();
+
+                    if (nivel != null && !nivel.isEmpty()) {
+                        return "redirect:/cursos/" + nivel.toLowerCase();
+                    }
+                }
+                return "redirect:/index";
+
+            default:
+                return "redirect:/index";
         }
     }
 }

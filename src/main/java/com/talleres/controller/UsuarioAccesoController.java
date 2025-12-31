@@ -18,7 +18,6 @@ public class UsuarioAccesoController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
     @GetMapping("/gestionar/{id}")
     public String formularioAcceso(@PathVariable Long id, Model model) {
         usuarioService.buscarEstudianteById(id).ifPresent(u -> {
@@ -27,7 +26,6 @@ public class UsuarioAccesoController {
         return "pages/gestionAcceso";
     }
 
-    // 2. Procesar la actualización de Password y Rol
     @PostMapping("/actualizar-acceso")
     public String actualizarAcceso(@RequestParam Long id,
                                    @RequestParam String password,
@@ -35,11 +33,8 @@ public class UsuarioAccesoController {
 
         Usuario usuario = usuarioService.buscarEstudianteById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-
         usuario.setPassword(passwordEncoder.encode(password));
         usuario.setRole(role);
-
         usuarioService.guardarEstudiante(usuario);
         return "redirect:/academy?exito=credenciales_actualizadas";
     }

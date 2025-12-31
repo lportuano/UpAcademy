@@ -37,7 +37,6 @@ public class CompraController {
     public String finalizarCompra(@RequestParam("curso") String nombreCurso,
                                   Authentication auth) {
 
-
         System.out.println("Compra procesada: " + nombreCurso + " para el usuario: " + auth.getName());
 
         return "redirect:/academy/notas?compraExitosa=true";

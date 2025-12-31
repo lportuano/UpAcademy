@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Nivel C1 - UP ACADEMY</title>
+</head>
+<body class="bg-slate-50 min-h-screen">
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<header class="bg-red-900 text-white py-24 px-6 border-b-8 border-red-700 shadow-2xl">
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-7xl font-black tracking-tighter">Strategic Communication</h1>
+        <p class="text-red-200 mt-6 text-2xl font-light">Negocia a nivel corporativo y domina las sutilezas de la lengua.</p>
+    </div>
+</header>
+
+<main class="max-w-5xl mx-auto py-16 px-6">
+    <section class="mb-20">
+        <h2 class="text-3xl font-bold text-red-900 mb-8 flex items-center gap-2">
+            <span class="w-2 h-8 bg-red-600"></span> Phrasal Verbs for Success
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="card bg-white p-6 shadow-md border border-red-50">
+                <h4 class="font-bold text-red-800">Scale up</h4>
+                <p class="text-sm text-gray-500">To increase in size or importance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-20 border-t border-red-200 pt-12">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-red-200">
+            <div class="bg-red-900 p-6 text-white">
+                <h3 class="text-2xl font-bold">📅 Schedule: Level <span th:text="${nivel}"></span></h3>
+                <p class="text-red-200 text-sm">Business English and strategic sessions.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-red-50">
+                    <tr>
+                        <th class="px-6 py-4 text-red-800 font-bold uppercase text-xs">Date</th>
+                        <th class="px-6 py-4 text-red-800 font-bold uppercase text-xs">Time</th>
+                        <th class="px-6 py-4 text-red-800 font-bold uppercase text-xs">Teacher</th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-red-100">
+                    <tr th:if="${#lists.isEmpty(horarios)}">
+                        <td colspan="3" class="px-6 py-12 text-center text-slate-400 italic">No classes scheduled for C1.</td>
+                    </tr>
+                    <tr th:each="h : ${horarios}" class="hover:bg-red-50 transition">
+                        <td class="px-6 py-4 font-bold text-slate-700" th:text="${h.fecha}"></td>
+                        <td class="px-6 py-4">
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
+                                <span th:text="${h.horaInicio}"></span> - <span th:text="${h.horaFin}"></span>
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-slate-600" th:text="${h.docenteNombre}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

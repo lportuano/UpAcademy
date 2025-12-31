@@ -11,6 +11,8 @@
 </head>
 <body class="back flex flex-col min-h-screen">
 
+
+
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <nav id="stickyNavbar" class="bg-white shadow-sm sticky top-0 z-40 transition-all duration-300">
@@ -23,6 +25,12 @@
         </div>
     </div>
 </nav>
+
+<div th:if="${param.error != null and param.error[0] == 'forbidden'}"
+     class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 text-center">
+    <strong class="font-bold">¡Acceso Restringido!</strong>
+    <span class="block sm:inline"> No tienes permisos para acceder a esa sección.</span>
+</div>
 
 <main class="main-content flex-grow">
     <div class="container">
@@ -51,7 +59,7 @@
         </div>
 
         <div class="cursos-grid">
-            <a th:href="@{/academy/formulario}">
+            <a th:href="@{/cursos/detalle/a1}">
                 <div class="curso-card">
                     <div class="curso-imagen">
                         <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng.png}" alt="Nivel A1" />
@@ -63,7 +71,7 @@
                     </div>
                 </div>
             </a>
-            <a th:href="@{/academy/formulario}">
+            <a th:href="@{/cursos/detalle/a2}">
                 <div class="curso-card">
                     <div class="curso-imagen">
                         <img th:src="@{https://ik.imagekit.io/pidh9ua3b/traduccion.png}" alt="Nivel A2" />
@@ -75,7 +83,7 @@
                     </div>
                 </div>
             </a>
-            <a th:href="@{/academy/formulario}">
+            <a th:href="@{/cursos/detalle/b1}">
                 <div class="curso-card">
                     <div class="curso-imagen">
                         <img th:src="@{https://ik.imagekit.io/pidh9ua3b/eng%20(1).png}" alt="Nivel B1" />
@@ -87,7 +95,7 @@
                     </div>
                 </div>
             </a>
-            <a th:href="@{/academy/formulario}">
+            <a th:href="@{/cursos/detalle/b2}">
                 <div class="curso-card">
                     <div class="curso-imagen">
                         <img th:src="@{https://ik.imagekit.io/pidh9ua3b/hola.png}" alt="Nivel B2" />
@@ -99,7 +107,7 @@
                     </div>
                 </div>
             </a>
-            <a th:href="@{/academy/formulario}">
+            <a th:href="@{/cursos/detalle/c1}">
                 <div class="curso-card">
                     <div class="curso-imagen">
                         <img th:src="@{https://ik.imagekit.io/pidh9ua3b/viaje.png}" alt="Nivel C1" />
@@ -111,7 +119,7 @@
                     </div>
                 </div>
             </a>
-            <a th:href="@{/academy/formulario}">
+            <a th:href="@{/cursos/detalle/c2}">
                 <div class="curso-card">
                     <div class="curso-imagen">
                         <img th:src="@{https://ik.imagekit.io/pidh9ua3b/educacion.png}" alt="Nivel C2" />

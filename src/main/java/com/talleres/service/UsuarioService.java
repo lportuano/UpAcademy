@@ -22,12 +22,9 @@ public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // Solo una declaración con @Lazy para romper el ciclo con SecurityConfig
     @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
-
-    // --- MÉTODOS DE CONSULTA ---
 
     public List<Usuario> mostrarEstudiante() {
         return usuarioRepository.findAll();
@@ -35,6 +32,10 @@ public class UsuarioService implements UserDetailsService {
 
     public Optional<Usuario> buscarEstudianteById(Long id) {
         return usuarioRepository.findById(id);
+    }
+
+    public Optional<Usuario> buscarEstudianteByCedula(String cedula) {
+        return usuarioRepository.findByCedula(cedula);
     }
 
     public List<Usuario> buscarEstudiantePorNombre(String buscarEstudiante) {
@@ -45,19 +46,14 @@ public class UsuarioService implements UserDetailsService {
         }
     }
 
-    // --- MÉTODOS DE PERSISTENCIA ---
-
     public Usuario guardarEstudiante(Usuario usuario) {
-        // 1. Encriptar solo si la contraseña NO está ya encriptada (no empieza por $2a$)
         if (usuario.getPassword() != null && !usuario.getPassword().isEmpty()) {
             if (!usuario.getPassword().startsWith("$2a$")) {
                 usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
             }
         }
-
-        // 2. Asegurarnos de que el rol tenga el formato correcto para Spring Security
         if (usuario.getRole() == null || usuario.getRole().isEmpty()) {
-            usuario.setRole("ROLE_ESTUDIANTE"); // Rol por defecto si no viene uno
+            usuario.setRole("ROLE_ESTUDIANTE");
         } else if (!usuario.getRole().startsWith("ROLE_")) {
             usuario.setRole("ROLE_" + usuario.getRole());
         }
@@ -78,7 +74,6 @@ public class UsuarioService implements UserDetailsService {
         estudianteExistente.setDireccion(usuario.getDireccion());
         estudianteExistente.setNivelIngles(usuario.getNivelIngles());
 
-        // Solo actualiza la contraseña si se envía una nueva
         if (usuario.getPassword() != null && !usuario.getPassword().isEmpty()) {
             estudianteExistente.setPassword(passwordEncoder.encode(usuario.getPassword()));
         }
@@ -109,8 +104,6 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.save(usuario);
     }
 
-    // --- SEGURIDAD (SPRING SECURITY) ---
-
     @Override
     public UserDetails loadUserByUsername(String cedula) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByCedula(cedula)
@@ -119,13 +112,17 @@ public class UsuarioService implements UserDetailsService {
         if (usuario.getPassword() == null || usuario.getRole() == null) {
             throw new UsernameNotFoundException("El usuario existe pero no tiene credenciales configuradas");
         }
-
-        // Construimos el objeto User de Spring Security
-        // .roles() añade automáticamente el prefijo "ROLE_" si no lo tiene
         return User.builder()
                 .username(usuario.getCedula())
                 .password(usuario.getPassword())
                 .roles(usuario.getRole().replace("ROLE_", ""))
                 .build();
     }
+
+    public List<Usuario> listarDocentes() {
+        return usuarioRepository.findAll().stream()
+                .filter(u -> "ROLE_DOCENTE".equals(u.getRole()))
+                .toList();
+    }
+
 }
