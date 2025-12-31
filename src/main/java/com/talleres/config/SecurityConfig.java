@@ -24,18 +24,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers("/", "/index", "/login", "/academy/formulario", "/academy/formDocente", "/usuarios/registrarUsuario").permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/images/**", "/vendor/**", "/academy/**").permitAll()
-
-
-                        .requestMatchers("/cursos/**").hasAnyRole("ADMIN", "ESTUDIANTE", "DOCENTE")
-
-
-                        .requestMatchers("/horarios/**").hasAnyRole("ADMIN", "DOCENTE")
-
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
 
                         .requestMatchers("/usuarios/gestionar/**").hasRole("ADMIN")
-                        .requestMatchers("/academy/editarDocente/**").hasRole("ADMIN")
+                        .requestMatchers("/academy/editarDocente/**","/academy/editarEstudiante/**").hasRole("ADMIN")
                         .requestMatchers("/academy/eliminarEstudiante/**").hasRole("ADMIN")
+
+                        .requestMatchers("/horarios/**").hasAnyRole("ADMIN", "DOCENTE")
+                        .requestMatchers("/cursos/**").hasAnyRole("ADMIN", "ESTUDIANTE", "DOCENTE")
 
                         .anyRequest().authenticated()
                 )

@@ -70,7 +70,7 @@
                         </a>
 
                         <div class="flex gap-1">
-                            <a th:href="@{/academy/editarDocente/{id}(id=${u.id})}"
+                            <a th:href="${u.role == 'ROLE_DOCENTE'} ? @{/academy/editarDocente/{id}(id=${u.id})} : @{/academy/editarEstudiante/{id}(id=${u.id})}"
                                class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-1 py-1 rounded text-center text-[10px] font-bold">
                                 Editar
                             </a>
