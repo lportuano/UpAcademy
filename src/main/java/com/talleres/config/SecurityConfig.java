@@ -22,17 +22,17 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // 1. Permisos públicos: Cualquier persona puede ver el inicio y registrarse
+
                         .requestMatchers("/", "/index", "/login", "/academy/formulario", "/academy/formDocente", "/usuarios/registrarUsuario").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/vendor/**", "/academy/**").permitAll()
 
-                        // 2. Estudiantes: Acceso a sus cursos (la lógica del nivel se maneja en el Controller)
+
                         .requestMatchers("/cursos/**").hasAnyRole("ADMIN", "ESTUDIANTE", "DOCENTE")
 
-                        // 3. Docentes: Pueden gestionar horarios y editar cursos
+
                         .requestMatchers("/horarios/**").hasAnyRole("ADMIN", "DOCENTE")
 
-                        // 4. Administrador: Acceso total a la gestión de usuarios
+
                         .requestMatchers("/usuarios/gestionar/**").hasRole("ADMIN")
                         .requestMatchers("/academy/editarDocente/**").hasRole("ADMIN")
                         .requestMatchers("/academy/eliminarEstudiante/**").hasRole("ADMIN")
@@ -47,7 +47,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
 
-                //mensaje de error
+
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
                             response.sendRedirect("/index?error=forbidden");
