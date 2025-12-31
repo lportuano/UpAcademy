@@ -27,11 +27,11 @@
             <div class="title-2"><span>UpAcademy</span></div>
 
             <div th:if="${param.error}" class="bg-red-500/20 border border-red-500 text-red-100 text-xs p-2 rounded mb-4 text-center">
-                Usuario o contraseña incorrectos.
+                Cédula o contraseña incorrectos.
             </div>
 
             <div class="input-container">
-                <input placeholder="Nombre de Usuario" type="text" name="username" class="input-field" required />
+                <input placeholder="Cédula de Identidad" type="text" name="cedula" class="input-field" required />
             </div>
             <div class="input-container">
                 <input placeholder="Contraseña" type="password" name="password" class="input-field" required />
@@ -42,7 +42,6 @@
         </form>
     </aside>
 </main>
-
 
 </body>
 </html>

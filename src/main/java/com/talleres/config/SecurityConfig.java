@@ -1,7 +1,10 @@
 package com.talleres.config;
 
+import com.talleres.service.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,43 +15,55 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final UsuarioService usuarioService;
+
+    // Inyectamos el servicio mediante constructor
+    public SecurityConfig(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
+    // Definimos el Bean del encriptador aquí mismo
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(usuarioService);
+        // Usamos el bean de arriba
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/index", "/login", "/css/**", "/js/**", "/images/**").permitAll()
-                                .requestMatchers(
-                                        "/academy/comprar",
-                                        "/academy/confirmarSeleccion",
-                                        "/academy/formulario",
-                                        "/academy/enviarEstudent",
-                                        "/academy/registro_exitoso"
-                                ).permitAll()
+                        // Permitir recursos estáticos sin login
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/vendor/**").permitAll()
 
-                        .requestMatchers("/usuarios/**", "/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/academy/editarEstudiante/**", "/academy/eliminarEstudiante/**").hasRole("ADMIN")
+                        // Restricción de acceso por Roles
+                        .requestMatchers("/usuarios/gestionar/**").hasRole("ADMIN")
+                        .requestMatchers("/academy/editarDocente/**").hasAnyRole("ADMIN", "DOCENTE")
 
-                        .requestMatchers("/academy").hasAnyRole("ADMIN", "DOCENTE")
-
-                        //.requestMatchers("/academy/**").authenticated()
-                        //.anyRequest().authenticated()
+                        // Todo lo demás requiere login
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/login/postLogin", true)
+                        .defaultSuccessUrl("/postLogin", true) // Lógica de redirección por rol
+                        .usernameParameter("cedula")         // Usamos tu campo de cédula
+                        .passwordParameter("password")
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/index")
+                        .logoutSuccessUrl("/login?logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                         .permitAll()
                 );
+
         return http.build();
     }
 }

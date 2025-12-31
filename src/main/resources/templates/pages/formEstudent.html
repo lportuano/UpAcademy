@@ -33,7 +33,7 @@
     </section>
 
     <aside>
-        <form class="form" th:action="@{/academy/enviarEstudent}" method="post" th:object="${estudent}">
+        <form class="form" th:action="@{/academy/enviarEstudent}" method="post" th:object="${usuario}">
             <div class="form-title"><span>Registro / Actualización</span></div>
             <div class="title-2"><span>UpAcademy</span></div>
             <input type="hidden" th:field="*{id}" />
@@ -44,6 +44,19 @@
             <div class="input-container">
                 <input placeholder="Apellido" type="text" th:field="*{apellido}" class="input-field" required minlength="2" maxlength="50" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"/>
             </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Cédula:</label>
+                <input type="text"
+                       th:field="*{cedula}"
+                       maxlength="10"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                       placeholder="Ej: 1726354412"
+                       required pattern="[0-9]{10}" title="La cédula debe tener 10 dígitos">
+                <p th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}" class="text-red-500 text-xs mt-1"></p>
+            </div>
+
             <div class="input-container">
                 <label class="block text-sm font-bold text-white mb-1">Fecha de nacimiento</label>
                 <input type="date" th:field="*{fechaNacimiento}" class="input-field" required />
@@ -57,10 +70,7 @@
             <div class="input-container">
                 <input placeholder="Dirección" type="text" th:field="*{direccion}" class="input-field" required minlength="5" maxlength="200" />
             </div>
-            <div class="input-container">
-                <label class="block text-sm font-bold text-white mb-1">Fecha de inscripción</label>
-                <input type="date" th:field="*{fechaInscripcion}" class="input-field" required />
-            </div>
+
             <div class="input-container">
                 <select th:field="*{nivelIngles}" class="input-field" required>
                     <option value="" disabled>Selecciona tu nivel</option>

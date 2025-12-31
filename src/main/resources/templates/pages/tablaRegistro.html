@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
@@ -7,58 +7,81 @@
     <link rel="stylesheet" th:href="@{/css/tabla.css}">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Tabla Registro</title>
+    <title>Gestión de Usuarios - UpAcademy</title>
 </head>
 <body class="flex flex-col min-h-screen">
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <main class="flex-grow container mx-auto p-4">
-    <div class="relative overflow-x-auto p-4">
+    <div class="relative overflow-x-auto p-4 bg-white shadow-md rounded-lg">
 
         <form th:action="@{/academy}" method="get" class="mb-6">
             <div class="flex gap-2">
                 <input type="text" name="buscarEstudiante"
-                       class="bg-white/70 border border-gray-400 text-gray-900 text-sm rounded-lg block w-64 p-2.5 outline-none"
-                       placeholder="Buscar Estudiante..." th:value="${buscarEstudiante}">
-                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg text-sm" type="submit">Buscar</button>
+                       class="bg-white border border-gray-400 text-gray-900 text-sm rounded-lg block w-64 p-2.5 outline-none focus:ring-2 focus:ring-indigo-500"
+                       placeholder="Buscar por cédula o nombre..." th:value="${buscarEstudiante}">
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg text-sm transition-all" type="submit">Buscar</button>
             </div>
         </form>
 
-        <table class="w-full text-sm text-left">
-            <thead class="text-gray-800 uppercase border-b-2 border-gray-900">
+        <table class="w-full text-sm text-left border-collapse">
+            <thead class="text-gray-800 uppercase border-b-2 border-gray-900 bg-gray-50">
             <tr>
-                <th class="px-6 py-3 font-medium">Nombre</th>
-                <th class="px-6 py-3 font-medium">Apellido</th>
-                <th class="px-6 py-3 font-medium">Fecha de nacimiento</th>
-                <th class="px-6 py-3 font-medium">Email</th>
-                <th class="px-6 py-3 font-medium">Telefono</th>
-                <th class="px-6 py-3 font-medium">Direccion</th>
-                <th class="px-6 py-3 font-medium">Fecha de inscripcion</th>
-                <th class="px-6 py-3 font-medium">Nivel de Ingles</th>
-                <th class="px-6 py-3 font-medium text-center">Acciones</th>
+                <th class="px-2 py-3">Nombre</th>
+                <th class="px-2 py-3">Apellido</th>
+                <th class="px-2 py-3">Cédula</th>
+                <th class="px-2 py-3">Nacimiento</th>
+                <th class="px-2 py-3">Email</th>
+                <th class="px-2 py-3">Teléfono</th>
+                <th class="px-2 py-3">Dirección</th>
+                <th class="px-2 py-3 text-indigo-700">Nivel</th>
+                <th class="px-2 py-3 text-center">Rol</th>
+                <th class="px-2 py-3 text-center">Acceso</th>
+                <th class="px-2 py-3 text-center">Acciones</th>
             </tr>
             </thead>
             <tbody class="text-gray-900">
-            <tr th:each="estudent: ${estudents}" class="border-b border-gray-400 hover:bg-black/5 transition-colors">
-                <td th:text="${estudent.nombre}" class="px-6 py-4 font-bold"></td>
-                <td th:text="${estudent.apellido}" class="px-6 py-4"></td>
-                <td th:text="${estudent.fechaNacimiento}" class="px-6 py-4"></td>
-                <td th:text="${estudent.email}" class="px-6 py-4"></td>
-                <td th:text="${estudent.telefono}" class="px-6 py-4"></td>
-                <td th:text="${estudent.direccion}" class="px-6 py-4"></td>
-                <td th:text="${estudent.fechaInscripcion}" class="px-6 py-4"></td>
-                <td th:text="${estudent.nivelIngles}" class="px-6 py-4 font-bold text-indigo-800"></td>
-                <td class="px-6 py-4">
-                    <div class="flex flex-col gap-2">
-                        <a th:href="@{/academy/editarEstudiante/} + ${estudent.id}"
-                           class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-center text-xs font-bold transition-all shadow-md">Actualizar</a>
+            <tr th:each="u : ${usuarios}" class="border-b border-gray-300 hover:bg-gray-100 transition-colors">
+                <td th:text="${u.nombre}" class="px-2 py-4 font-bold"></td>
+                <td th:text="${u.apellido}" class="px-2 py-4"></td>
+                <td th:text="${u.cedula}" class="px-2 py-4"></td>
+                <td th:text="${u.fechaNacimiento}" class="px-2 py-4"></td>
+                <td th:text="${u.email}" class="px-2 py-4"></td>
+                <td th:text="${u.telefono}" class="px-2 py-4"></td>
+                <td th:text="${u.direccion}" class="px-2 py-4"></td>
+                <td th:text="${u.nivelIngles}" class="px-2 py-4 font-extrabold text-indigo-800"></td>
 
-                        <form th:action="@{/academy/eliminarEstudiante/} + ${estudent.id}" method="post">
-                            <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-xs font-bold transition-all shadow-md"
-                                    onclick="return confirm('¿Estás seguro de eliminar este registro?')">Eliminar</button>
-                        </form>
+                <td class="px-2 py-4 text-center">
+                    <span th:if="${u.role == 'ROLE_ADMIN'}" class="badge badge-error text-[10px] text-white">ADMIN</span>
+                    <span th:if="${u.role == 'ROLE_DOCENTE'}" class="badge badge-info text-[10px] text-white">DOCENTE</span>
+                    <span th:if="${u.role == 'ROLE_ESTUDIANTE'}" class="badge badge-ghost text-[10px]">ESTUDIANTE</span>
+                </td>
+
+                <td class="px-2 py-4 text-center">
+                    <span th:text="${u.password != null ? '✅' : '❌'}" th:title="${u.password != null ? 'Con clave' : 'Sin clave'}"></span>
+                </td>
+
+                <td class="px-2 py-4">
+                    <div class="flex flex-col gap-1">
+                        <a th:href="@{/usuarios/gestionar/{id}(id=${u.id})}"
+                           class="bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded text-center text-[10px] font-bold uppercase shadow-sm">
+                            🔑 Credenciales
+                        </a>
+
+                        <div class="flex gap-1">
+                            <a th:href="@{/academy/editarDocente/{id}(id=${u.id})}"
+                               class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-1 py-1 rounded text-center text-[10px] font-bold">
+                                Editar
+                            </a>
+
+                            <form th:action="@{/academy/eliminarEstudiante/{id}(id=${u.id})}" method="post" class="flex-1">
+                                <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white px-1 py-1 rounded text-[10px] font-bold"
+                                        onclick="return confirm('¿Eliminar registro?')">
+                                    Borrar
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -69,11 +92,12 @@
 
 <footer class="footer footer-horizontal footer-center bg-purple-900 text-purple-100 p-10 mt-auto">
     <aside>
-        <figure class="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow-lg mx-auto mb-4">
+        <figure class="w-16 h-16 rounded-full overflow-hidden border-2 border-purple-400 shadow-lg mx-auto mb-4">
             <img th:src="@{https://ik.imagekit.io/pidh9ua3b/imagen.jpg}" alt="Logo UpAcademy" class="w-full h-full object-cover">
         </figure>
-        <p class="font-bold">UpAcademy<br />Educando desde 2025</p>
-        <p>Roy Armijos - Bryan Guanoluisa</p>
+        <p class="font-bold text-lg">UpAcademy</p>
+        <p class="text-sm">Gestión de Roles y Accesos Académicos 2025</p>
+        <p class="text-xs text-purple-300">Roy Armijos - Bryan Guanoluisa</p>
     </aside>
 </footer>
 

@@ -4,35 +4,29 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 
-    @GetMapping
-    public String login(){
+    @GetMapping("/login")
+    public String login() {
         return "pages/login";
     }
 
-    //redirigir por roles
     @GetMapping("/postLogin")
-    public String dirigirPorRol(Authentication authenticator){
-        //obtener el objeto usuario que acaba de iniciar secion
+    public String dirigirPorRol(Authentication authenticator) {
+        if (authenticator == null) return "redirect:/login";
+
         User usuario = (User) authenticator.getPrincipal();
-        //procesa la lista de roles o permisos que tiene el usuario
         String role = usuario.getAuthorities().stream()
                 .map(grantedAuthority -> grantedAuthority.getAuthority())
                 .findFirst()
                 .orElse("");
-        if (role.equals("ROLE_ADMIN")){
-            return "redirect:/admin";
-        } else if (role.equals("ROLE_DOCENTE")) {
+
+        if (role.equals("ROLE_ADMIN") || role.equals("ROLE_DOCENTE")) {
             return "redirect:/academy";
-        } else if (role.equals("ROLE_ESTUDIANTE")) {
+        } else {
             return "redirect:/index";
         }
-        return "redirect:/login?error";
     }
-
 }

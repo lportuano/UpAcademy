@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Credenciales</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+  <h2 class="text-2xl font-bold mb-6 text-center text-indigo-600">Configurar Acceso</h2>
+
+  <form th:action="@{/usuarios/actualizar-acceso}" method="post">
+    <input type="hidden" name="id" th:value="${usuario.id}" />
+
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2">Nombre:</label>
+      <p class="text-gray-600 italic" th:text="${usuario.nombre + ' ' + usuario.apellido}"></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2">Usuario (Cédula):</label>
+      <input type="text" th:value="${usuario.cedula}" class="w-full p-2 border rounded bg-gray-50" readonly />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2">Contraseña Nueva:</label>
+      <input type="password" name="password" class="w-full p-2 border rounded focus:ring-2 focus:ring-indigo-400" required />
+    </div>
+
+    <div class="mb-6">
+      <label class="block text-gray-700 font-bold mb-2">Rol de Usuario:</label>
+      <select name="role" class="w-full p-2 border rounded">
+        <option value="ROLE_ESTUDIANTE">Estudiante</option>
+        <option value="ROLE_DOCENTE">Docente</option>
+        <option value="ROLE_ADMIN">Administrador</option>
+      </select>
+    </div>
+
+    <div class="flex justify-between">
+      <a th:href="@{/academy}" class="text-gray-500 hover:underline">Regresar</a>
+      <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Guardar Acceso</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
