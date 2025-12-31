@@ -18,6 +18,7 @@
 </header>
 
 <main class="max-w-5xl mx-auto py-12 px-6">
+
     <section class="mb-16">
         <div class="flex items-center gap-4 mb-8">
             <div class="h-12 w-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">1</div>
@@ -38,7 +39,10 @@
             <div class="bg-blue-900 text-white p-8 rounded-3xl shadow-xl">
                 <h4 class="text-lg font-bold mb-3">Expert Tip: Negatives</h4>
                 <p class="text-blue-200 italic">"In the past, use 'did not' + base verb. Never say 'I didn't went'."</p>
-                <div class="mt-4 bg-blue-800 p-4 rounded-xl text-sm font-mono">✅ I didn't see him.<br>❌ I didn't saw him.</div>
+                <div class="mt-4 bg-blue-800 p-4 rounded-xl text-sm font-mono text-center">
+                    <span class="text-green-400">✅ I didn't see him.</span><br>
+                    <span class="text-red-400">❌ I didn't saw him.</span>
+                </div>
             </div>
         </div>
     </section>
@@ -50,17 +54,40 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-6 mt-6">
-            <div class="card bg-white p-6 shadow-sm border border-blue-100">
-                <p class="font-bold">Short Adjectives</p>
-                <p class="text-sm text-gray-500 mt-2">Add -ER: "Cold -> Colder"</p>
+            <div class="card bg-white p-6 shadow-sm border border-blue-100 border-b-4 border-b-blue-500">
+                <p class="font-bold text-blue-800">Short Adjectives</p>
+                <p class="text-sm text-gray-600 mt-2 italic">Fast → Faster</p>
+                <p class="text-xs text-gray-400">"A plane is faster than a car."</p>
             </div>
-            <div class="card bg-white p-6 shadow-sm border border-blue-100">
-                <p class="font-bold">Long Adjectives</p>
-                <p class="text-sm text-gray-500 mt-2">Use MORE: "More beautiful"</p>
+            <div class="card bg-white p-6 shadow-sm border border-blue-100 border-b-4 border-b-blue-500">
+                <p class="font-bold text-blue-800">Long Adjectives</p>
+                <p class="text-sm text-gray-600 mt-2 italic">More + Adjective</p>
+                <p class="text-xs text-gray-400">"Paris is more expensive than Quito."</p>
             </div>
-            <div class="card bg-white p-6 shadow-sm border border-blue-100">
-                <p class="font-bold">Irregular</p>
-                <p class="text-sm text-gray-500 mt-2">Good -> Better</p>
+            <div class="card bg-white p-6 shadow-sm border border-blue-100 border-b-4 border-b-blue-500">
+                <p class="font-bold text-blue-800">Irregular Cases</p>
+                <p class="text-sm text-gray-600 mt-2 italic">Good → Better / Bad → Worse</p>
+                <p class="text-xs text-gray-400">"Healthy food is better for you."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-16 bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <span class="text-blue-600">🕒</span> Time Prepositions: In, On, At
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 bg-blue-50 rounded-xl">
+                <h4 class="font-bold text-blue-700">IN</h4>
+                <p class="text-sm">Months, years, seasons.<br><span class="italic">"In July", "In 2024"</span></p>
+            </div>
+            <div class="p-4 bg-blue-50 rounded-xl">
+                <h4 class="font-bold text-blue-700">ON</h4>
+                <p class="text-sm">Days and dates.<br><span class="italic">"On Monday", "On June 5th"</span></p>
+            </div>
+            <div class="p-4 bg-blue-50 rounded-xl">
+                <h4 class="font-bold text-blue-700">AT</h4>
+                <p class="text-sm">Specific times.<br><span class="italic">"At 8:00 AM", "At night"</span></p>
             </div>
         </div>
     </section>
@@ -71,17 +98,25 @@
             <h2 class="text-3xl font-bold text-slate-800">Travel & Booking</h2>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-2xl text-center shadow-md">
-                <span class="text-4xl">🎫</span><p class="mt-2 font-bold uppercase text-xs text-blue-700">Ticket</p>
+            <div class="bg-white p-6 rounded-2xl text-center shadow-md hover:scale-105 transition border border-slate-100">
+                <span class="text-4xl">🎫</span>
+                <p class="mt-2 font-bold uppercase text-[10px] text-blue-700">Ticket</p>
+                <p class="text-[10px] text-gray-400 italic">Boleto / Entrada</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl text-center shadow-md">
-                <span class="text-4xl">🛂</span><p class="mt-2 font-bold uppercase text-xs text-blue-700">Passport</p>
+            <div class="bg-white p-6 rounded-2xl text-center shadow-md hover:scale-105 transition border border-slate-100">
+                <span class="text-4xl">🛂</span>
+                <p class="mt-2 font-bold uppercase text-[10px] text-blue-700">Passport</p>
+                <p class="text-[10px] text-gray-400 italic">Pasaporte</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl text-center shadow-md">
-                <span class="text-4xl">🏨</span><p class="mt-2 font-bold uppercase text-xs text-blue-700">Accommodation</p>
+            <div class="bg-white p-6 rounded-2xl text-center shadow-md hover:scale-105 transition border border-slate-100">
+                <span class="text-4xl">🏨</span>
+                <p class="mt-2 font-bold uppercase text-[10px] text-blue-700">Accommodation</p>
+                <p class="text-[10px] text-gray-400 italic">Alojamiento</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl text-center shadow-md">
-                <span class="text-4xl">🚌</span><p class="mt-2 font-bold uppercase text-xs text-blue-700">Shuttle</p>
+            <div class="bg-white p-6 rounded-2xl text-center shadow-md hover:scale-105 transition border border-slate-100">
+                <span class="text-4xl">🚌</span>
+                <p class="mt-2 font-bold uppercase text-[10px] text-blue-700">Shuttle</p>
+                <p class="text-[10px] text-gray-400 italic">Transporte / Traslado</p>
             </div>
         </div>
     </section>
@@ -124,6 +159,5 @@
         </div>
     </section>
 </main>
-
 </body>
 </html>

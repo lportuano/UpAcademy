@@ -11,24 +11,78 @@
 
 <header class="bg-green-800 text-white py-20 px-6 shadow-xl">
     <div class="max-w-5xl mx-auto">
-        <span class="bg-green-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase">Nivel B1: Intermediate</span>
+        <span class="bg-green-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">Nivel B1: Intermediate</span>
         <h1 class="text-6xl font-black mt-6 tracking-tight">Breaking Limits</h1>
-        <p class="text-green-100 mt-4 text-xl font-light">Domina el tiempo perfecto para hablar de tus logros.</p>
+        <p class="text-green-100 mt-4 text-xl font-light">Domina el tiempo perfecto para hablar de tus logros y experiencias de vida.</p>
     </div>
 </header>
 
 <main class="max-w-5xl mx-auto py-12 px-6">
+
     <section class="mb-16">
         <h2 class="text-3xl font-bold text-green-900 mb-8 border-b-4 border-green-200 inline-block">01. Present Perfect Mastery</h2>
-        <div class="bg-white p-8 rounded-3xl shadow-lg">
-            <p class="text-lg text-slate-700 mb-6">Usa <b>Have/Has + Past Participle</b>.</p>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-lg border border-green-50">
+                <p class="text-lg text-slate-700 mb-4 font-medium">Usa <b>Have/Has + Past Participle</b> para hablar de acciones que conectan el pasado con el presente.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 bg-green-50 p-4 rounded-xl">
+                        <span class="text-2xl">🌍</span>
+                        <p class="text-sm text-green-800 italic">"I <b>have traveled</b> to many countries."</p>
+                    </div>
+                    <div class="flex items-center gap-3 bg-green-50 p-4 rounded-xl">
+                        <span class="text-2xl">🎓</span>
+                        <p class="text-sm text-green-800 italic">"She <b>has finished</b> her English project."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 text-white p-8 rounded-3xl shadow-xl flex flex-col justify-center">
+                <h3 class="text-xl font-bold mb-4 text-green-400">Key Words (B1 Focus)</h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex justify-between border-b border-slate-700 pb-1"><span>Just</span> <span class="text-green-300">Hace un momento</span></li>
+                    <li class="flex justify-between border-b border-slate-700 pb-1"><span>Already</span> <span class="text-green-300">Ya (antes de lo esperado)</span></li>
+                    <li class="flex justify-between border-b border-slate-700 pb-1"><span>Yet</span> <span class="text-green-300">Aún no / Ya (preguntas)</span></li>
+                    <li class="flex justify-between border-b border-slate-700 pb-1"><span>Ever</span> <span class="text-green-300">Alguna vez</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-16">
+        <h2 class="text-3xl font-bold text-green-900 mb-8 border-b-4 border-green-200 inline-block">02. Giving Advice (Modals)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="stats shadow bg-white border border-green-100">
+                <div class="stat">
+                    <div class="stat-title text-slate-500 uppercase text-[10px] font-bold">Advice</div>
+                    <div class="text-green-700 font-black text-2xl">Should</div>
+                    <div class="stat-desc mt-2">"You should practice every day."</div>
+                </div>
+            </div>
+            <div class="stats shadow bg-white border border-green-100">
+                <div class="stat">
+                    <div class="stat-title text-slate-500 uppercase text-[10px] font-bold">Obligation</div>
+                    <div class="text-green-700 font-black text-2xl">Must / Have to</div>
+                    <div class="stat-desc mt-2">"We must respect the rules."</div>
+                </div>
+            </div>
+            <div class="stats shadow bg-white border border-green-100">
+                <div class="stat">
+                    <div class="stat-title text-slate-500 uppercase text-[10px] font-bold">Possibility</div>
+                    <div class="text-green-700 font-black text-2xl">Might / May</div>
+                    <div class="stat-desc mt-2">"It might rain later today."</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="mt-20 border-t border-green-200 pt-12">
         <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-green-200">
-            <div class="bg-green-700 p-6 text-white">
-                <h3 class="text-2xl font-bold">📅 Schedule: Level <span th:text="${nivel}"></span></h3>
+            <div class="bg-green-700 p-6 text-white flex justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-bold">📅 Schedule: Level <span th:text="${nivel}"></span></h3>
+                    <p class="text-green-100 text-sm">Clases de nivel intermedio para consolidar tu fluidez.</p>
+                </div>
+                <div class="badge badge-outline text-white border-white">B1 Classes</div>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left">
